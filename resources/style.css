@@ -1,0 +1,30 @@
+#topnav nav {
+  position: block;
+  list-style-type: none;
+  margin: 0;
+  Padding: 0;
+  display: inline;
+}
+
+#topnav li {
+  float: right;
+  margin: 5px;
+  Padding: auto;
+}
+
+#mainnav {
+  background-color: white;
+}
+
+#mainnav nav {
+  list-style-type: none;
+  text-align:center;
+}
+
+#mainnav li {
+  float: left;
+  padding: 10px;
+  margin: auto;
+  display:inline;
+  padding:0 30px;
+}
