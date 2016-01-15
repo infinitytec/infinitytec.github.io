@@ -1,3 +1,7 @@
+html {
+  font-family: 'Raleway', sans-serif;
+}
+
 #topnav nav {
   position: block;
   list-style-type: none;
