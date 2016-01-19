@@ -20,6 +20,12 @@ html {
   Padding: auto;
 }
 
+.verse1{
+  width: 397px;
+  height: 58px;
+  float: left;
+  margin-top: 10em;
+}
 #mainnav {
   background-color: white;
 }
