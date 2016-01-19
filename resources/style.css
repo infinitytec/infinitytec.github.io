@@ -23,7 +23,6 @@ html {
 img.verse1{
   width: 397px;
   height: 58px;
-  margin-top: 10em;
 }
 
 img.logo{
@@ -32,9 +31,9 @@ img.logo{
 }
 
 img.verse2{
+  
   width: 397px;
   height: 58px;
-  margin-top: 9em;
 }
 
 #mainnav {
