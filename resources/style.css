@@ -2,6 +2,8 @@ html {
   font-family: 'Raleway', sans-serif;
   background-color: lightblue;
   width:1280px;
+  margin: auto;
+  padding: auto;
 }
 
 #topnav nav {
