@@ -21,20 +21,20 @@ header {
 }
 
 img.verse1{
-  width: 357px;
-  height: 52px;
+ /* width: 357px;
+  height: 52px;*/
 }
 
 img.logo{
   width: 372px;
-  height: 200px;
-  margin-left: -35px;
+  /*height: 200px;
+  margin-left: -35px;*/
 }
 
 img.verse2{
   margin-left: -40px;
-  width: 357px;
-  height: 52px;
+ /* width: 357px;
+  height: 52px;*/
 }
 
 #mainnav {
