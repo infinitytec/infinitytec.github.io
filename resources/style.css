@@ -28,11 +28,10 @@ img.verse1{
 img.logo{
   width: 372px;
   height: 200px;
-  margin-left: -35px;
+  margin: -35px;
 }
 
 img.verse2{
-  margin-left:-35px;
   width: 357px;
   height: 52px;
 }
