@@ -4,6 +4,7 @@ header {
   width:1280px;
   margin: auto;
   padding: auto;
+  overflow: auto;
 }
 
 #topnav nav {
