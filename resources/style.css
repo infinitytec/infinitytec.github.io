@@ -21,25 +21,26 @@ header {
 }
 
 img.verse1{
-  width: 357px;
-  height: 52px;
+  width: 437px;
+  height: 64px;
 }
 
 img.logo{
-  width: 372px;
-  height: 200px;
+  width: 456px;
+  height: 245px;
   margin-left: -35px;
 }
 
 img.verse2{
   margin-left: -40px;
-  width: 357px;
-  height: 52px;
+  width: 437px;
+  height: 64px;
 }
 
 #mainnav {
   background-color: white;
 }
+/*1.225*/
 
 #mainnav nav {
   list-style-type: none;
