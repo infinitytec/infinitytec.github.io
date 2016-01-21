@@ -25,6 +25,7 @@ img.verse1{
   width: 437px;
   height: 64px;
   float: left;
+  margin-top: 60px;
 }
 
 img.logo{
@@ -32,6 +33,7 @@ img.logo{
   height: 245px;
   margin-left: -35px;
   float: left;
+  margin-top: 60px;
 }
 
 img.verse2{
@@ -39,6 +41,7 @@ img.verse2{
   width: 437px;
   height: 64px;
   float: left;
+  margin-top: 60px;
 }
 
 #mainnav {
