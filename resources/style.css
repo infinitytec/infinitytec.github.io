@@ -23,18 +23,21 @@ header {
 img.verse1{
   width: 437px;
   height: 64px;
+  float: left;
 }
 
 img.logo{
   width: 456px;
   height: 245px;
-  margin-left: -40px;
+  margin-left: -35px;
+  float: left;
 }
 
 img.verse2{
-  margin-left: -45px;
+  margin-left: -40px;
   width: 437px;
   height: 64px;
+  float: left;
 }
 
 #mainnav {
