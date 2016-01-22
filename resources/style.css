@@ -7,6 +7,10 @@ header {
   overflow: auto;
 }
 
+p.homeofthe{
+  margin-top: 50px;
+}
+
 #topnav nav {
   position: block;
   list-style-type: none;
