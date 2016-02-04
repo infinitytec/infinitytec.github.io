@@ -20,11 +20,11 @@ p.homeofthe{
   display: inline;
 }*/
 
-#topnav li {
+/*#topnav li {
   float: right;
   margin: 5px;
   Padding: auto;
-}
+}*/
 
 #logos {
   background-color: lightblue;
@@ -70,4 +70,5 @@ img.verse2 {
   margin: auto;
   display:inline;
   padding:0 30px;
+  font-size: 25px;
 }
