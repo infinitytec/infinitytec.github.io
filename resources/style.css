@@ -62,6 +62,7 @@ img.verse2 {
 #mainnav nav {
   list-style-type: none;
   text-align:center;
+  width: 100%;
 }
 
 #mainnav li {
