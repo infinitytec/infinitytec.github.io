@@ -12,19 +12,19 @@ header {
 p.homeofthe{
 }
 
-/*#topnav nav {
+#topnav nav {
   position: block;
   list-style-type: none;
   margin: 0;
   Padding: 0;
   display: inline;
-}*/
+}
 
-/*#topnav li {
+#topnav li {
   float: right;
   margin: 5px;
   Padding: auto;
-}*/
+}
 
 #logos {
   background-color: lightblue;
