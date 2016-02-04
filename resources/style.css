@@ -62,11 +62,11 @@ img.verse2 {
 #mainnav nav {
   list-style-type: none;
   text-align:center;
+  float: left;
   width: 100%;
 }
 
 #mainnav li {
-  float: left;
   padding: 10px;
   margin: auto;
   display:inline;
