@@ -2,24 +2,24 @@ html {
   background-color: darkgrey;
   font-family: 'Raleway', sans-serif;
   width:1280px;
-}
-header {
   margin: auto;
   padding: auto;
   overflow: auto;
 }
-
-p.homeofthe{
-  padding-top: 200px;
+header {
+  
 }
 
-#topnav nav {
+p.homeofthe{
+}
+
+/*#topnav nav {
   position: block;
   list-style-type: none;
   margin: 0;
   Padding: 0;
   display: inline;
-}
+}*/
 
 #topnav li {
   float: right;
@@ -27,24 +27,24 @@ p.homeofthe{
   Padding: auto;
 }
 
-#logos{
+#logos {
   background-color: lightblue;
 }
-img.verse1{
+img.verse1 {
   width: 437px;
   height: 64px;
   float: left;
   margin-top: 175px;
 }
 
-img.logo{
+img.logo {
   width: 456px;
   height: 245px;
   margin-left: -35px;
   float: left;
 }
 
-img.verse2{
+img.verse2 {
   margin-left: -42px;
   width: 437px;
   height: 64px;
