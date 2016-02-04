@@ -4,7 +4,6 @@ html {
   width:1280px;
   margin: auto;
   padding: auto;
-  overflow: auto;
 }
 header {
   
@@ -29,6 +28,7 @@ p.homeofthe{
 
 #logos {
   background-color: lightblue;
+  overflow: auto;
 }
 img.verse1 {
   width: 437px;
