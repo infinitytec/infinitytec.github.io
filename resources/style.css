@@ -1,10 +1,9 @@
 html {
   background-color: darkgrey;
+  font-family: 'Raleway', sans-serif;
+  width:1280px;
 }
 header {
-  font-family: 'Raleway', sans-serif;
-  background-color: lightblue;
-  width:1280px;
   margin: auto;
   padding: auto;
   overflow: auto;
@@ -28,6 +27,9 @@ p.homeofthe{
   Padding: auto;
 }
 
+#logos{
+  background-color: lightblue;
+}
 img.verse1{
   width: 437px;
   height: 64px;
