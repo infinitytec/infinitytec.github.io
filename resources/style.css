@@ -26,7 +26,7 @@ p.homeofthe{
   Padding: auto;
 }
 #search {
-  width: 100px;
+  width: 200px;
 }
 
 #logos {
@@ -60,7 +60,7 @@ img.verse2 {
   background-color: white;
   float: left;
 }
-/*1.225 (ammount to increase image sizes)*/
+/*1.225 (amount to increase image sizes)*/
 
 #mainnav nav {
   list-style-type: none;
