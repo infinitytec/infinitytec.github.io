@@ -14,7 +14,7 @@ p.homeofthe{
 
 #topnav {
   width: 100px;
-  float: left;
+  float: right;
 }
 #topnav nav {
   position: block;
