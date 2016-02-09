@@ -12,6 +12,10 @@ header {
 p.homeofthe{
 }
 
+#topnav {
+  width: 100px;
+  float: left;
+}
 #topnav nav {
   position: block;
   list-style-type: none;
