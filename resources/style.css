@@ -37,7 +37,7 @@ html {
 }
 #projects{ clear: left; float: left; width: 100%; background-color: #132b48; border-radius: 1em; width: 100%; }
 .printOnly { display: none; }
-body { font: 1em/1.5em Raleway, sans-serif; color: #0072ff; background-size: 100%; background-image: url(background.jpg); background-attachment: fixed; }
+body { font: 1em/1.5em Raleway, sans-serif; color: #0072ff; background-size: 100%; background-image: url(https://cloud.githubusercontent.com/assets/13670462/14394798/b99f3076-fd93-11e5-98e6-738f70220302.jpg); background-attachment: fixed; }
 h1 { font: 3em Raleway, sans-serif bold; color: #132b48; text-align: center; margin-top: 0%; background-color: #156489; text-shadow: none; }
 h2 { font: 2em Raleway, sans-serif; color: #132b48; background-color: #156489; text-indent: 1em; }
 h3 {
