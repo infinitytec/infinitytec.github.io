@@ -76,14 +76,13 @@ html {
 	}
 #main {
 	width: 90%;
-	margin-right: 2.5%;
-	margin-left: 5%;
+	margin: auto;
 	background-color: #132b48;
 	border-radius: 1em;
 }
 #sidebar {
 	width: 90%;
-	margin-right: 5%;
+	margin: auto;
 	background-color: #132b48;
 	border-radius: 1em;
 }
