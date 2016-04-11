@@ -63,7 +63,8 @@ dl{ margin: 1em; }
 }
 html {
 	box-sizing: border-box;
-	width: 600px;
+	width: 400px;
+	margin: auto;
 }
 *, *:before, *:after {
   box-sizing: inherit;
