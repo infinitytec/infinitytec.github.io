@@ -1,4 +1,4 @@
-@media screen {
+@media screen and (min-width: 1000px) {
 @font-face {
   font-family: 'Raleway';
   src: url('pagelayout/fonts/Raleway-Light.ttf');
