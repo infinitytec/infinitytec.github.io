@@ -53,6 +53,57 @@ p { margin: 1em; }
 dl{ margin: 1em; }
 }
 
+@media screen and (max-width: 999px) {
+@font-face {
+  font-family: 'Raleway';
+  src: url('pagelayout/fonts/Raleway-Light.ttf');
+  src: url('pagelayout/fonts/Raleway-Bold.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+html {
+	box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+#wrapper {
+	width: 95%;
+	margin: 0 auto;
+}
+#navigation {
+	clear: left;
+	}
+#main {
+	width: 90%;
+	margin-right: 2.5%;
+	margin-left: 5%;
+	background-color: #132b48;
+	border-radius: 1em;
+}
+#sidebar {
+	width: 90%;
+	margin-right: 5%;
+	background-color: #132b48;
+	border-radius: 1em;
+}
+#projects{ clear: left; float: left; width: 100%; background-color: #132b48; border-radius: 1em; width: 100%; }
+.printOnly { display: none; }
+body { font: 1em/1.5em Raleway, sans-serif; color: #0072ff; background-size: 100%; background-image: url(https://cloud.githubusercontent.com/assets/13670462/14394798/b99f3076-fd93-11e5-98e6-738f70220302.jpg); background-attachment: fixed; }
+h1 { font: 3em Raleway, sans-serif bold; color: #132b48; text-align: center; margin-top: 0%; background-color: #156489; text-shadow: none; }
+h2 { font: 2em Raleway, sans-serif; color: #132b48; background-color: #156489; text-indent: 1em; }
+h3 {
+	font-family: Raleway;
+	color: #7F7F7F;
+	font-size: medium;
+	}
+img { width: 100%; height: 100%; margin-top: 1em; margin-bottom: 0em; }
+header { background-color: #132b48; border-top-left-radius : 1em; border-top-right-radius: 1em;}
+footer { clear: left; background-color: #156489; text-align: center; color: #132b48; font-family: sans-serif;
+	border-radius: 1em; }
+p { margin: 1em; }
+dl{ margin: 1em; }
+}
 
 @media print {
 
