@@ -49,8 +49,8 @@
     box-shadow: 0px 3px 20px 5px rgba(8, 8, 8, 0.57);
   }
   header img.logo {
-    width: 50%;
-    height: 50%;
+    width: 45%;
+    height: 45%;
     display: block;
     margin: auto;
   }
@@ -207,5 +207,6 @@
 @media screen and (max-height: 1080px) {
   #footer{
     position: relative;
+    overflow: auto;
   }
 }
