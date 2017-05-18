@@ -204,3 +204,8 @@
     margin-bottom: 5%;
   }
 }
+@media screen and (max-height: 1080px) {
+  #footer{
+    position: relative;
+  }
+}
