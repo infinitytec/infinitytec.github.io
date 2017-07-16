@@ -16,18 +16,18 @@
   }
   a.link {
     text-decoration: none;
-    color: yellow;
+    color: #4ab1dc;
   }
   a.link:visited {
     text-decoration: none;
-    color: yellow;
+    color: #4ab1dc;
   }
   a.link:hover {
     text-decoration: underline;
   }
   nav a {
     text-decoration: none;
-    color: yellow;
+    color: #4ab1dc;
   }
   body {
     background: url("background.jpg") top left no-repeat fixed;
@@ -37,7 +37,7 @@
   }
   header {
     background-color: #161717;
-    color: yellow;
+    color: #4ab1dc;
     margin: 0px;
     padding: 10px;
     position: fixed;
@@ -73,7 +73,7 @@
     background-color: darkgrey;
   }
   nav a.current a {
-    background-color: yellow;
+    background-color: #4ab1dc;
     color: #161717;
   }
   #main {
@@ -97,7 +97,7 @@
   }
   #main h1 {
     background-color: #161717;
-    color: yellow;
+    color: #4ab1dc;
     width: 100%;
     font-weight: normal;
     padding: 10px;
@@ -116,7 +116,7 @@
   }
   #footer {
     background-color: #161717;
-    color: yellow;
+    color: #4ab1dc;
     margin: auto;
     padding: 10px;
     position: fixed;
@@ -191,7 +191,7 @@
     background-color: darkgrey;
   }
   nav a.current {
-    background-color: yellow;
+    background-color: #4ab1dc;
     color: #161717;
   }
   nav.smallnav:hover #dropdown-content,
