@@ -87,7 +87,9 @@
   #content {
     display: inline-block;
     text-align: left;
-
+    width: 100%;
+    margin: auto;
+    overflow-x: hidden;
   }
   #main.img {
     display: block;
