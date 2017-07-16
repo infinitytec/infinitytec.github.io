@@ -95,11 +95,14 @@
     font-weight: normal;
     padding: 10px;
   }
+  #blog {
+    text-align: center;
+  }
   #blog iframe {
-     margin-left: 5%; 
+    margin-left: 5%; 
     margin-right: 5%; 
     overflow-x: hidden; 
-    position: absloute; 
+    display: inline-block;
     width: 90%; 
     height: 600px; 
     margin-bottom: 30px; 
