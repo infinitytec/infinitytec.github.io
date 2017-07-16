@@ -95,6 +95,16 @@
     font-weight: normal;
     padding: 10px;
   }
+  #blog iframe {
+     margin-left: 5%; 
+    margin-right: 5%; 
+    overflow-x: hidden; 
+    position: absloute; 
+    width: 90%; 
+    height: 600px; 
+    margin-bottom: 30px; 
+    border-style: none;
+  }
   #footer {
     background-color: #161717;
     color: yellow;
