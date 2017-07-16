@@ -99,11 +99,9 @@
     text-align: center;
   }
   #blog iframe {
-    margin-left: 5%; 
-    margin-right: 5%; 
     overflow-x: hidden; 
     display: inline-block;
-    width: 90%; 
+    width: 100%; 
     height: 600px; 
     margin-bottom: 30px; 
     border-style: none;
