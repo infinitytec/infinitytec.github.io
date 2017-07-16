@@ -97,6 +97,7 @@
   }
   #blog {
     text-align: center;
+    width: 100%;
   }
   #blog iframe {
     overflow-x: hidden; 
