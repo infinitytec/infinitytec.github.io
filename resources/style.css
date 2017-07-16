@@ -79,10 +79,13 @@
   #main {
     margin-top: 15%;
     margin-bottom: 12%;
+    text-align: center;
   }
   #content {
-    padding-left: 27px;
-    padding-right: 49px;
+    display: inline-block;
+    text-align: left;
+    width: 100%;
+    
   }
   #main.img {
     display: block;
