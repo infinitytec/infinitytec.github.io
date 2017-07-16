@@ -70,7 +70,9 @@
     margin: 0px;
   }
   nav a:hover {
-    background-color: darkgrey;
+    transition: background-color 0.5s ease-out;
+    background-color: #4ab1dc;
+    color: #161717;
   }
   nav a.current a {
     background-color: #4ab1dc;
@@ -177,7 +179,9 @@
     padding: 10px;
   }
   .smallnav .dropdown:hover {
-    background-color: darkgrey;
+    transition: background-color 0.5s ease-out;
+    background-color: #4ab1dc;
+    color: #161717;
   }
   .smallnav a {
     float: left;
@@ -188,7 +192,9 @@
     margin: 0px;
   }
   nav a:hover {
-    background-color: darkgrey;
+    transition: background-color 0.5s ease-out;
+    background-color: #4ab1dc;
+    color: #161717;
   }
   nav a.current {
     background-color: #4ab1dc;
