@@ -223,14 +223,14 @@
     clear: left;
   }
   #main {
-    margin-top: 36%;
+    margin-top: 33%;
     margin-bottom: 5%;
   }
 }
 
 @media screen and (max-width: 330px) {
   #main {
-    margin-top: 42%;
+    margin-top: 32%;
     margin-bottom: 5%;
   }
 }
