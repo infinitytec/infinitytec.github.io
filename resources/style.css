@@ -117,12 +117,11 @@
     border-style: none;
   }
   footer {
-    display: inline;
     background-color: #161717;
     color: #4ab1dc;
     margin: auto;
     padding: 10px;
-    position: fixed;
+    position: fixed !important;
     bottom: 0;
     width: 100%;
     overflow-x: hidden;
