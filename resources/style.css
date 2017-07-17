@@ -119,7 +119,7 @@
     overflow-x: hidden; 
     display: inline-block;
     width: 100%; 
-    height: 600px; 
+    height: auto; 
     margin-bottom: 30px; 
     border-style: none;
   }
