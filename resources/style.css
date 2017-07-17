@@ -149,6 +149,9 @@
     margin-top: 20%;
     margin-bottom: 27%;
   }
+  footer {
+    position: static;
+  }
 }
 
 @media screen and (max-width: 500px) {
