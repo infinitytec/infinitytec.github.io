@@ -93,6 +93,13 @@
     margin: auto;
     overflow-x: hidden;
   }
+  #content p {
+    background-color: #161717;
+    color: white;
+    width: 100%;
+    font-weight: normal;
+    padding: 10px;
+  }
   #main.img {
     display: block;
     margin: auto;
