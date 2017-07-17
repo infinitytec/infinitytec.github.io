@@ -139,15 +139,15 @@
 
 @media screen and (max-width: 1100px) {
   #main {
-    margin-top: 17%;
+    margin-top: 16%;
     margin-bottom: 17%;
   }
 }
 
 @media screen and (max-width: 800px) {
   #main {
-    margin-top: 20%;
-    margin-bottom: 27%;
+    margin-top: 18%;
+    margin-bottom: 10%;
   }
   footer {
     position: static;
@@ -156,8 +156,8 @@
 
 @media screen and (max-width: 500px) {
   #main {
-    margin-top: 25%;
-    margin-bottom: 25%;
+    margin-top: 23%;
+    margin-bottom: 10%;
   }
 }
 
