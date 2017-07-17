@@ -116,7 +116,7 @@
     margin-bottom: 30px; 
     border-style: none;
   }
-  #footer {
+  footer {
     background-color: #161717;
     color: #4ab1dc;
     margin: auto;
@@ -208,7 +208,7 @@
     margin-top: 32%;
     margin-bottom: 5%;
   }
-  #footer {
+  footer {
     position: relative;
     overflow: auto;
   }
@@ -231,7 +231,7 @@
   }
 }
 @media screen and (max-height: 1080px) {
-  #footer {
+  footer {
     position: relative;
     overflow: auto;
   }
