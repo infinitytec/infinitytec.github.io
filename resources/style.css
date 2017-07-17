@@ -209,7 +209,7 @@
     margin-bottom: 5%;
   }
   footer {
-    position: relative;
+    position: relative !important;
     overflow: auto;
   }
 }
@@ -232,7 +232,7 @@
 }
 @media screen and (max-height: 1080px) {
   footer {
-    position: relative;
+    position: relative !important;
     overflow: auto;
   }
   #main {
