@@ -231,12 +231,12 @@
     margin-bottom: 5%;
   }
 }
-@media screen and (max-height: 1080px) {
+/*@media screen and (max-height: 1080px) {
   footer {
-    position: relative !important;
+    position: relative;
     overflow: auto;
   }
   #main {
     margin-bottom: 2%;
   }
-}
+}*/
