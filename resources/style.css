@@ -145,14 +145,16 @@
   }
 }
 
-@media screen and (max-width: 1100px) {
+/*@media screen and (max-width: 1100px) {*/
+@media screen and (max-width: 50cm) {
   #main {
     margin-top: 14%;
     margin-bottom: 17%;
   }
 }
 
-@media screen and (max-width: 800px) {
+/*@media screen and (max-width: 800px) {*/
+  @media screen and (max-width: 40cm) {
   #main {
     margin-top: 15%;
     margin-bottom: 10%;
@@ -162,7 +164,8 @@
   }
 }
 
-@media screen and (max-width: 500px) {
+/*@media screen and (max-width: 500px) {*/
+@media screen and (max-width: 30cm) {
   #main {
     margin-top: 20%;
     margin-bottom: 10%;
