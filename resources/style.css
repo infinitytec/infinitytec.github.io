@@ -165,7 +165,7 @@
 }
 
 /*@media screen and (max-width: 500px) {*/
-@media screen and (max-width: 20cm) {
+@media screen and (max-width: 15cm) {
   #main {
     margin-top: 20%;
     margin-bottom: 10%;
