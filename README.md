@@ -1,2 +1,2 @@
-# Hi
-This is still a work in progress.
+# infinitytec.github.io
+My personal site.
