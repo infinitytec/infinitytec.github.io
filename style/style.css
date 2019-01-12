@@ -1,252 +1,279 @@
-@font-face {
-	font-family: comfortaa;
-	src: url(comfortaa.ttf);
-}
+/*This is the PencilRevived theme, created by infinitytec.
+It is protected under the MIT License:
+Copyright 2019 infinitytec
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
+This theme is still a work-in-progress. */
+@import url('https://fonts.googleapis.com/css?family=Quicksand');
+/*The Quicksand font is licensed under the Open Font License. Learn more: http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL_web*/
 
 @media screen {
-	body {
-		width: 100%;
-		padding: 0;
+
+	html,
+	body,
+	main {
 		margin: 0;
+		padding: 0;
+		font-family: Quicksand;
 		scroll-behavior: smooth;
 	}
 
-	header {
-		width: calc(100% - 8em);
-		padding: 1em 4em;
-		background: #2aa2ff;
-		font-family: "comfortaa";
+	.box a.big {
+		font-size: 2em;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		padding: 1em;
+		text-decoration: underline;
+		transition: all 0.2s ease-in-out;
+		width: calc(100% - 2em);
 		color: white;
-		height: 5em;
-		margin: 0 0 0.5em 0;
 	}
 
-	header img,
-	header h1,
-	header nav {
-		height: auto;
+	.box a.big:hover {
+		letter-spacing: 2px;
+		background: white;
+		color: black;
+	}
+
+	.box {
+		padding: 1em 2em;
+		width: calc(25% - 2em);
+		margin: 1em;
 		display: inline-block;
-		padding: 0.25em;
-		margin: 0.5em;
-		max-height: 3em;
 		box-sizing: border-box;
+		font-size: 10pt;
+		transition: all 0.2s ease-in-out;
+		border-radius: 0.5em;
+		position: relative;
+		border: 0px solid white;
+	}
+
+	.fancy {
+		border: 3px solid transparent;
+		min-height: 26em;
 		vertical-align: middle;
 	}
 
-	main {
-		width: 95%;
-		padding: 0;
-		margin: auto;
-		font-size: 0;
-	}
-
-	main h1 {
-		font-family: "comfortaa";
-	}
-
-	.card {
-		font-size: 12pt;
-		width: calc(100% - 1em);
-		padding: 1em;
-		margin: 1em 0.5em 1em 0.5em;
-		display: inline-block;
-		border-radius: 1em;
-		box-shadow: 0em .5em 0.5em #aaaaaa;
-		border: 1px solid #eeeeee;
-		box-sizing: border-box;
-		text-align: center;
-		vertical-align: top;
-		font-family: "comfortaa";
-		min-height: 25em;
-		overflow: hidden;
-	}
-
-	.card img {
-		max-width: 50%;
-	}
-
-	.card li,
-	.card p {
-		text-align: left;
-	}
-
-	.card a.big {
+	.fancy:hover {
+		/*box-shadow: 0px 10px 10px #11111155;*/
 		background: #2aa2ff;
-		padding: 1em 1.5em;
-		border-radius: 0.5em;
-		margin: 0.5em;
-		text-decoration: none;
+		border: 3px solid white;
+		padding: calc(1em - 3px) calc(2em - 3px);
+	}
+
+	.red {
+		background: #ef3e30;
 		color: white;
-		display: inline-block;
-		border: 2px solid #2aa2ff;
-		transition: all 0.2s ease;
 	}
 
-	.bottom {
-		vertical-align: bottom;
+	.orange {
+		background: #e9893c;
+		color: white;
 	}
 
-	.card a.big:hover {
+	.blue {
+		background: #2aa2ff;
+		color: white;
+	}
+
+	.grey {
+		background: #4a4947;
+		color: white;
+	}
+
+	.green {
+		background: #34995d;
+		color: white;
+	}
+
+	.white {
 		background: white;
-		color: #2aa2ff;
-		padding: 1em 2em;
-		margin: 0.5em 0em;
+		color: black;
 	}
 
-	.card a.big:active {
-		background: #2aa2ff33;
+	.full {
+		width: calc(100% - 60pt);
+		padding: 10pt 30pt;
+		margin: 0;
+		font-size: 0;
+		text-align: center;
 	}
 
-	.half {
-		width: calc(50% - 1em);
+	.box.full {
+		font-size: 10pt;
+		margin-bottom: 1em;
 	}
 
-	.third {
-		width: calc(100% / 3 - 1em);
+	.box.half {
+		width: calc(50% - 2em);
+		vertical-align: top;
+	}
+
+
+	section {
+		height: auto;
+		min-height: 20em;
+	}
+
+	section.products {
+		padding: 45pt;
+		width: calc(100% - 90pt);
+	}
+
+	section h1 {
+		font-size: 20pt;
+	}
+
+	.box h1 {
+		margin: 0.25em 0 0.5em 0;
+	}
+	main img {
+		max-width: 100%;
+	}
+	section p {
+		font-size: 10pt;
+	}
+
+	header {
+		z-index: 1;
 	}
 
 	nav {
-		height: 100%;
-		margin: 0 1em 0 1em;
-		position: relative;
-		top: -1.5em;
+		position: sticky;
+		top: -5em;
+		background: #2aa2ff;
+		padding: 0.5em 5em;
+		width: calc(100% - 10em);
+		color: white;
+		z-index: 1;
+		transition: all 0.2s ease-in-out;
 	}
 
-	p a {
-		color: inherit;
-		text-decoration: underline;
-		transition: all 0.2s ease;
+	nav:hover {
+		top: 0;
+		box-shadow: 0px 10px 10px #11111155;
 	}
 
-	p a:hover {
-		color: #ffffff99;
-	}
-
-	a.fancy,
-	nav a {
-		padding: 0.5em;
+	nav a:hover,
+	button.close:hover {
 		background: white;
 		color: #2aa2ff;
-		border-radius: .5em;
-		text-decoration: none;
-		font-size: 1.5em;
-		height: auto;
-		display: inline-block;
-		margin: 0.5em;
-		max-height: 3em;
-		box-sizing: border-box;
-		vertical-align: middle;
-		border: 3px solid white;
-		transition: all 0.2s ease;
 	}
 
-	a.fancy:hover,
-	nav a:hover {
-		background: transparent;
-		color: white;
-	}
-
-	a.fancy:active,
-	nav a:active {
-		background: #ffffff33;
-	}
-
-	.card a.big.tred {
-		background: #ff3333;
-		border-color: #ff3333;
-	}
-
-	.card a.big.tred:hover {
-		color: #ff3333;
-		background: white;
-	}
-
-	.card a.big.tred:active {
-		background: #ff333333;
-	}
-
-	.card a.big.tgreen {
-		background: #33bb33;
-		border-color: #33bb33;
-	}
-
-	.card a.big.tgreen:hover {
-		color: #33bb33;
-		background: white;
-	}
-
-	.card a.big.tgreen:active {
-		background: #33bb3333;
-	}
-
-	.card a.big.torange {
-		background: #ff7700;
-		border-color: #ff7700;
-	}
-
-	.card a.big.torange:hover {
-		color: #ff7700;
-		background: white;
-	}
-
-	.card a.big.torange:active {
-		background: #ff770033;
-	}
-
-	.right {
+	button.close {
 		position: absolute;
-		right: 2em;
+		right: 0.5em;
+		top: 0.5em;
 	}
 
-	.card iframe {
-		width: 100%;
-		border: none;
-		min-height: 30em;
+	nav a,
+	button.close {
+		border: 2px solid white;
+		font-family: Quicksand;
+	}
+
+	nav button.hamburger {
+		padding: .3em .2em .05em .2em !important;
+		margin: 0;
+		border: 2px solid transparent;
+		position: relative;
+		top: 5px;
+	}
+
+	nav button.hamburger img {
+		height: 1.5em;
+	}
+
+	nav button.hamburger:hover {
+		border: 2px solid white;
+	}
+
+	nav h1,
+	nav a,
+	nav button,
+	button.close {
+		color: white;
+		display: inline-block;
+		padding: 0.25em 1em;
+		font-weight: bold;
+		font-size: 1.5em;
+		text-decoration: none;
+		transition: all 0.2s ease-in-out;
+		border-radius: 0.5em;
+		background: transparent;
+		margin: 0 0 0.1em 0;
+	}
+
+	#navmenu {
+		display: block;
+		transition: all 0.2s ease-in-out;
+		max-height: 0em;
+		position: sticky;
+		top: 0;
+		overflow: hidden;
+		background: #2aa2ff;
+		min-height: 0;
+	}
+
+	#navmenu.show {
+		padding: 1.5em 0 0 0;
+		max-height: 50vh;
+		overflow-y: auto;
+	}
+
+	#alert {
+		position: fixed;
+		bottom: 1em;
+		left: 10%;
+		padding: 1em;
+		background: #2aa2ff;
+		border-radius: 0.5em;
+		width: calc(80% - 2em);
+		color: white;
+		max-height: 50%;
+		border: 2px solid white;
+		overflow-y: auto;
+		transition: all 0.2s ease-in-out;
+		box-shadow: 0px 10px 10px #11111155;
+	}
+
+	#alert.hide {
+		padding: 0;
+		height: 0;
+		max-height: 0;
+		bottom: -50em;
+		display: none;
+	}
+
+	p.text,
+	p.text a {
+		color: inherit;
+		border-radius: 0.5em;
+		padding: 1em;
+		width: calc(100% - 2em);
+		text-align: left;
+		font-size: 1em;
+	}
+
+	p.text a {
+		text-decoration: underline;
+		padding: 0;
+		margin: 0;
+		transition: all 0.2s ease-in-out;
+		border-radius: 3pt;
+	}
+
+	p.text a:hover {
+		text-decoration: none;
+		background: white;
+		color: black;
 	}
 
 	aside {
 		color: #aaaaaa;
-	}
-
-	.gallery {
-		width: 100%;
-	}
-
-	.gallery-item {
-		width: calc(25% - 5em - 6px);
-		height: 240px;
-		padding: 1em;
-		margin: 1em;
-		border-radius: 0.5em;
-		transition: all 0.2s ease;
-		background: #2aa2ff;
-		color: white;
-		border: 3px solid #2aa2ff;
-		text-align: center;
-		display: inline-grid;
-	}
-
-	.gallery-item p {
-		text-align: center;
-	}
-	.gallery-item img {
-		margin: auto;
-	}
-	.gallery-item:hover {
-		box-shadow: 0em .5em 0.5em #aaaaaa;
-	}
-
-	a.gallery-item {
-		text-decoration: none;
-	}
-
-	.gallery-item.tall {
-		height: 320px;
-	}
-
-	.gallery-item a.big {
-		border: 3px solid white;
-		font-size: 1em;
+		font-size: 10pt;
 	}
 
 	footer {
@@ -255,74 +282,45 @@
 		background: #2aa2ff;
 		font-family: "comfortaa";
 		color: white;
-		margin: 0.5em 0 0 0;
-	}
-}
-
-@media screen and (max-width: 110em) {
-	header {
-		height: auto;
-		overflow: hidden;
-		width: calc(100% - .5em);
-		padding: 0.25em;
-		text-overflow: ellipsis;
 	}
 
-	header nav {
-		width: calc(100% - 4em);
-		padding: 0 2em;
-		margin: 0;
-		overflow-x: auto;
-		overflow-y: hidden;
-		display: inline;
+	@media screen and (min-width: 100em) {
+		#descriptions .box {
+			width: calc(50% - 4em);
+			margin: 1em;
+			min-height: 16em;
+			float: left;
+		}
+
+		section#descriptions {
+			overflow: hidden;
+		}
 	}
 
-	header h1,
-	header img {
-		display: block;
-		text-align: center;
-		margin: 0.75em auto;
-	}
+	@media screen and (max-width: 90em) {
+		.box {
+			width: calc(50% - 2em);
+		}
 
-	header nav a {
-		display: inline-block;
-	}
+		@media screen and (max-width: 50em) {
+			nav {
+				top: 0;
+				width: calc(100% - 2em);
+				padding: 0.5em 1em;
+				box-shadow: 0px 5px 5px #11111155;
+			}
 
-	.half,
-	.third {
-		width: calc(50% - 1em);
-	}
+			.box {
+				width: calc(100% - 0em);
+				margin: 1em 0em;
+			}
 
-	.gallery-item {
-		width: calc(50% - 4.5em);
-		height: 260px;
-		float: left;
-	}
+			.box.half {
+				width: calc(100% - 2em);
+			}
 
-	.gallery-item.tall {
-		height: 390px;
-	}
-}
-
-@media screen and (max-width: 50em) {
-	header {
-		width: calc(100% - .5em);
-	}
-
-	header nav {
-		width: 100%;
-	}
-	header nav a {
-		display: block;
-	}
-	.half,
-	.third {
-		width: calc(100% - 1em);
-	}
-
-	.gallery-item {
-		width: calc(100% - 4.5em);
-	}
-
-
-}
+			section.full {
+				padding: 10pt;
+				width: calc(100% - 20pt);
+			}
+		}
