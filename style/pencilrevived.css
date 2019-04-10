@@ -20,7 +20,7 @@ This theme is still a work-in-progress. */
 		background: #292929;
 	}
 	main {
-		min-height: 85h;
+		min-height: 85vh;
 	}
 	.box a.big {
 		font-size: 2em;
