@@ -19,7 +19,9 @@ This theme is still a work-in-progress. */
 		scroll-behavior: smooth;
 		background: #292929;
 	}
-
+	main {
+		min-height: 90vh;
+	}
 	.box a.big {
 		font-size: 2em;
 		position: absolute;
@@ -59,7 +61,7 @@ This theme is still a work-in-progress. */
 
 	.fancy:hover {
 		/*box-shadow: 0px 10px 10px #11111155;*/
-		background: #2aa2ff;
+		background: transparent;
 		border: 3px solid white;
 		padding: calc(1em - 3px) calc(2em - 3px);
 	}
@@ -75,7 +77,7 @@ This theme is still a work-in-progress. */
 	}
 
 	.blue {
-		background: #2aa2ff;
+		background: #7CC6EB;
 		color: white;
 	}
 
@@ -147,7 +149,7 @@ This theme is still a work-in-progress. */
 	nav {
 		position: sticky;
 		top: -5em;
-		background: #2aa2ff;
+		background: #AB6BFF;
 		padding: 0.5em 5em;
 		width: calc(100% - 10em);
 		color: white;
@@ -163,7 +165,7 @@ This theme is still a work-in-progress. */
 	nav a:hover,
 	button.close:hover {
 		background: white;
-		color: #2aa2ff;
+		color: #AB6BFF;
 	}
 
 	button.close {
@@ -217,7 +219,7 @@ This theme is still a work-in-progress. */
 		position: sticky;
 		top: 0;
 		overflow: hidden;
-		background: #2aa2ff;
+		background: #AB6BFF;
 		min-height: 0;
 	}
 
@@ -232,7 +234,7 @@ This theme is still a work-in-progress. */
 		bottom: 1em;
 		left: 10%;
 		padding: 1em;
-		background: #2aa2ff;
+		background: #AB6BFF;
 		border-radius: 0.5em;
 		width: calc(80% - 2em);
 		color: white;
@@ -283,7 +285,7 @@ This theme is still a work-in-progress. */
 	footer {
 		width: calc(100% - 8em);
 		padding: 1em 4em;
-		background: #2aa2ff;
+		background: #AB6BFF;
 		font-family: "comfortaa";
 		color: white;
 	}
