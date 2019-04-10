@@ -17,6 +17,7 @@ This theme is still a work-in-progress. */
 		padding: 0;
 		font-family: Quicksand;
 		scroll-behavior: smooth;
+		background: #292929;
 	}
 
 	.box a.big {
@@ -92,7 +93,10 @@ This theme is still a work-in-progress. */
 		background: white;
 		color: black;
 	}
-
+	.purple {
+		background: #AB6BFF;
+		color: white;
+	}
 	.full {
 		width: calc(100% - 60pt);
 		padding: 10pt 30pt;
