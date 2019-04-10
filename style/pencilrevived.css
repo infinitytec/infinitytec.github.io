@@ -20,7 +20,7 @@ This theme is still a work-in-progress. */
 		background: #292929;
 	}
 	main {
-		min-height: 80vh;
+		min-height: 85h;
 	}
 	.box a.big {
 		font-size: 2em;
@@ -31,7 +31,7 @@ This theme is still a work-in-progress. */
 		text-decoration: underline;
 		transition: all 0.2s ease-in-out;
 		width: calc(100% - 2em);
-		color: #b6b6b6;
+		color: white;
 	}
 
 	.box a.big:hover {
@@ -68,27 +68,27 @@ This theme is still a work-in-progress. */
 
 	.red {
 		background: #ef3e30;
-		color: #b6b6b6;
+		color: white;
 	}
 
 	.orange {
 		background: #e9893c;
-		color: #b6b6b6;
+		color: white;
 	}
 
 	.blue {
 		background: #7CC6EB;
-		color: #b6b6b6;
+		color: white;
 	}
 
 	.grey {
 		background: #4a4947;
-		color: #b6b6b6;
+		color: white;
 	}
 
 	.green {
 		background: #34995d;
-		color: #b6b6b6;
+		color: white;
 	}
 
 	.white {
@@ -97,7 +97,7 @@ This theme is still a work-in-progress. */
 	}
 	.purple {
 		background: #AB6BFF;
-		color: #b6b6b6;
+		color: white;
 	}
 	.full {
 		width: calc(100% - 60pt);
@@ -152,7 +152,7 @@ This theme is still a work-in-progress. */
 		background: #AB6BFF;
 		padding: 0.5em 5em;
 		width: calc(100% - 10em);
-		color: #b6b6b6;
+		color: white;
 		z-index: 1;
 		transition: all 0.2s ease-in-out;
 	}
@@ -164,7 +164,7 @@ This theme is still a work-in-progress. */
 
 	nav a:hover,
 	button.close:hover {
-		background: #b6b6b6;
+		background: white;
 		color: #AB6BFF;
 	}
 
@@ -176,7 +176,7 @@ This theme is still a work-in-progress. */
 
 	nav a,
 	button.close {
-		border: 2px solid #b6b6b6;
+		border: 2px solid white;
 		font-family: Quicksand;
 	}
 
@@ -193,14 +193,14 @@ This theme is still a work-in-progress. */
 	}
 
 	nav button.hamburger:hover {
-		border: 2px solid #b6b6b6;
+		border: 2px solid white;
 	}
 
 	nav h1,
 	nav a,
 	nav button,
 	button.close {
-		color: #b6b6b6;
+		color: white;
 		display: inline-block;
 		padding: 0.25em 1em;
 		font-weight: bold;
@@ -237,9 +237,9 @@ This theme is still a work-in-progress. */
 		background: #AB6BFF;
 		border-radius: 0.5em;
 		width: calc(80% - 2em);
-		color: #b6b6b6;
+		color: white;
 		max-height: 50%;
-		border: 2px solid #b6b6b6;
+		border: 2px solid white;
 		overflow-y: auto;
 		transition: all 0.2s ease-in-out;
 		box-shadow: 0px 10px 10px #11111155;
@@ -273,7 +273,7 @@ This theme is still a work-in-progress. */
 
 	p.text a:hover {
 		text-decoration: none;
-		background: #b6b6b6;
+		background: white;
 		color: black;
 	}
 
@@ -287,7 +287,7 @@ This theme is still a work-in-progress. */
 		padding: 1em 4em;
 		background: #AB6BFF;
 		font-family: "comfortaa";
-		color: #b6b6b6;
+		color: white;
 	}
 
 	@media screen and (min-width: 100em) {
@@ -329,4 +329,4 @@ This theme is still a work-in-progress. */
 				padding: 10pt;
 				width: calc(100% - 20pt);
 			}
-		}
+}
