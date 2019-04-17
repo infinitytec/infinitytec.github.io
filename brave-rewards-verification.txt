@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: infinitytec.github.io
+Token: 843dea4b1af40b986010da6568b288475205693aaff143ff7f98d26d8cb51026
