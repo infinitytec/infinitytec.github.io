@@ -284,6 +284,11 @@ This theme is still a work-in-progress. */
 		color: white;
 	}
 
+        footer a {
+                font-family: "comfortaa";
+                color: white;
+        }
+
 	@media screen and (min-width: 100em) {
 		#descriptions .box {
 			width: calc(50% - 4em);
