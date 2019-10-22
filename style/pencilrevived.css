@@ -94,6 +94,15 @@ This theme is still a work-in-progress. */
 		color: black;
 	}
 
+	.img {
+		color: white;
+		background: url(background.png);
+		background-attachment: fixed;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: cover;
+	}
+
 	.full {
 		width: calc(100% - 60pt);
 		padding: 10pt 30pt;
@@ -130,9 +139,11 @@ This theme is still a work-in-progress. */
 	.box h1 {
 		margin: 0.25em 0 0.5em 0;
 	}
+
 	main img {
 		max-width: 100%;
 	}
+
 	section p {
 		font-size: 10pt;
 	}
@@ -175,6 +186,10 @@ This theme is still a work-in-progress. */
 		font-family: 'Quicksand', sans-serif;
 	}
 
+	nav h1 a {
+		border: 2px solid transparent;
+	}
+
 	nav button.hamburger {
 		padding: .3em .2em .05em .2em !important;
 		margin: 0;
@@ -189,6 +204,12 @@ This theme is still a work-in-progress. */
 
 	nav button.hamburger:hover {
 		border: 2px solid white;
+	}
+
+	nav h1 a:hover {
+		border: 2px solid white;
+		background: transparent;
+		color: white;
 	}
 
 	nav h1,
@@ -276,7 +297,9 @@ This theme is still a work-in-progress. */
 		color: #aaaaaa;
 		font-size: 10pt;
 	}
-	.box ul, .box ol {
+
+	.box ul,
+	.box ol {
 		width: 50%;
 		margin: auto;
 		text-align: left;
@@ -290,10 +313,10 @@ This theme is still a work-in-progress. */
 		color: white;
 	}
 
-        footer a {
-                font-family: 'Comfortaa', cursive;
-                color: white;
-        }
+	footer a {
+		font-family: 'Comfortaa', cursive;
+		color: white;
+	}
 
 	@media screen and (min-width: 100em) {
 		#descriptions .box {
