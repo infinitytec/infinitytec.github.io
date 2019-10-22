@@ -275,6 +275,11 @@ This theme is still a work-in-progress. */
 		color: #aaaaaa;
 		font-size: 10pt;
 	}
+	.box ul, .box ol {
+		width: 50%;
+		margin: auto;
+		text-align: left;
+	}
 
 	footer {
 		width: calc(100% - 8em);
