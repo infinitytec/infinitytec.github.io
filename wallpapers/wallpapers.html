@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+	<meta charset="utf-8">
 	<!--
 This is the PencilRevived theme, created by infinitytec.
 It is protected under the MIT License:
@@ -11,21 +12,11 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
 This theme is still a work-in-progress.
 -->
-	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>infinitytec's wallpapers</title>
 	<link rel="stylesheet" type="text/css" href="../style/pencilrevived.css">
 	<link rel="shortcut icon" href="../style/icon.ico" type="image/x-icon" />
-	<script>
-		function menu() {
-			document.getElementById("navmenu").classList.toggle("show");
-		}
-
-		function closealert() {
-			document.getElementById("alert").classList.add("hide");
-		}
-
-	</script>
+	<script src="../style/pencilrevived.js"></script>
 </head>
 
 <body>
@@ -41,7 +32,14 @@ This theme is still a work-in-progress.
 			<h1>Wallpapers</h1>
 			<p>Here is a collection of wallpapers you can use. Click to get the full resolution. Most are 4K.<br>Feel free to use them however!</p>
 		</section>
-		<section id="wallpapers" class="full grey">
+		<section class="subnav full img">
+			<a href="#warp" class="big">warp collection</a>
+			<a href="#shards" class="big">shards collection</a>
+			<a href="#space" class="big">space collection</a>
+			<a href="#others" class="big">others</a>
+		</section>
+		<section id="warp" class="full grey">
+			<h1>warp</h1>
 			<div class="box blue fancy">
 				<img src="preview/warp.png" alt="warp">
 				<h1>warp</h1>
@@ -62,6 +60,14 @@ This theme is still a work-in-progress.
 				<h1>warp4</h1>
 				<a href="fullresolution/warp4.png" class="big">Check it out</a>
 			</div>
+			<div class="box blue fancy">
+				<img src="preview/warp5.png" alt="warp5">
+				<h1>warp5</h1>
+				<a href="fullresolution/warp5.png" class="big">Check it out</a>
+			</div>
+		</section>
+		<section id="shards" class="full grey">
+			<h1>shards</h1>
 			<div class="box blue fancy">
 				<img src="preview/shards1.png" alt="shards1">
 				<h1>shards1</h1>
@@ -93,17 +99,41 @@ This theme is still a work-in-progress.
 				<a href="fullresolution/shards6.png" class="big">Check it out</a>
 			</div>
 			<div class="box blue fancy">
+				<img src="preview/shards7.png" alt="shards7">
+				<h1>shards7</h1>
+				<a href="fullresolution/shards7.png" class="big">Check it out</a>
+			</div>
+			<div class="box blue fancy">
+				<img src="preview/shards8.png" alt="shards8">
+				<h1>shards8</h1>
+				<a href="fullresolution/shards8.png" class="big">Check it out</a>
+			</div>
+			<div class="box blue fancy">
+				<img src="preview/shards9.png" alt="shards9">
+				<h1>shards9</h1>
+				<a href="fullresolution/shards9.png" class="big">Check it out</a>
+			</div>
+			<div class="box blue fancy">
+				<img src="preview/shards10.png" alt="shards10">
+				<h1>shards10</h1>
+				<a href="fullresolution/shards10.png" class="big">Check it out</a>
+			</div>
+		</section>
+		<section id="space" class="full grey">
+			<h1>space</h1>
+			<div class="box blue fancy">
 				<img src="preview/blackhole1.png" alt="black hole 1">
 				<h1>black hole 1</h1>
 				<a href="fullresolution/blackhole1.png" class="big">Check it out</a>
 			</div>
 		</section>
+		<section id="others" class="full grey">
+			<h1>others</h1>
+			<p>Nothing yet.</p>
+		</section>
 	</main>
 	<footer>
 		<p>Copyright &copy;2019, infinitytec. "infinitytec" and the door logo are trademarks of infinitytec. The theme to this site is Pencil Revived, &copy;2019 by infinitytec, under the MIT License.</p>
-		<a href="https://brave.com/inf454">
-			<p>Btw I accept BAT.</p>
-		</a>
 	</footer>
 </body>
 

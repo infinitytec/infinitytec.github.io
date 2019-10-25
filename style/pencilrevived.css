@@ -20,6 +20,11 @@ This theme is still a work-in-progress. */
 		text-rendering: geometricPrecision;
 	}
 
+	body {
+		width: 100%;
+		overflow-x: hidden;
+	}
+
 	.box a.big {
 		font-size: 2em;
 		position: absolute;
@@ -163,21 +168,21 @@ This theme is still a work-in-progress. */
 		transition: all 0.2s ease-in-out;
 	}
 
-	nav:hover {
-		top: 0;
-		box-shadow: 0px 10px 10px #11111155;
-	}
-
-	nav a:hover,
-	button.close:hover {
-		background: white;
-		color: #2aa2ff;
-	}
-
-	button.close {
-		position: absolute;
-		right: 0.5em;
-		top: 0.5em;
+	nav h1,
+	nav a,
+	nav button,
+	button.close,
+	.subnav a {
+		color: white;
+		display: inline-block;
+		padding: 0.25em 1em;
+		font-weight: bold;
+		font-size: 1.5em;
+		text-decoration: none;
+		transition: all 0.2s ease-in-out;
+		border-radius: 0.5em;
+		background: transparent;
+		margin: 0 0 0.1em 0;
 	}
 
 	nav a,
@@ -202,6 +207,30 @@ This theme is still a work-in-progress. */
 		height: 1.5em;
 	}
 
+	.subnav a {
+		font-size: 15pt;
+		border: 2px solid #fff;
+		margin: 0.1em;
+	}
+
+	nav:hover {
+		top: 0;
+		box-shadow: 0px 10px 10px #11111155;
+	}
+
+	nav a:hover,
+	button.close:hover,
+	section a:hover {
+		background: white;
+		color: #2aa2ff;
+	}
+
+	button.close {
+		position: absolute;
+		right: 0.5em;
+		top: 0.5em;
+	}
+
 	nav button.hamburger:hover {
 		border: 2px solid white;
 	}
@@ -212,21 +241,6 @@ This theme is still a work-in-progress. */
 		color: white;
 	}
 
-	nav h1,
-	nav a,
-	nav button,
-	button.close {
-		color: white;
-		display: inline-block;
-		padding: 0.25em 1em;
-		font-weight: bold;
-		font-size: 1.5em;
-		text-decoration: none;
-		transition: all 0.2s ease-in-out;
-		border-radius: 0.5em;
-		background: transparent;
-		margin: 0 0 0.1em 0;
-	}
 
 	#navmenu {
 		display: block;
@@ -270,7 +284,9 @@ This theme is still a work-in-progress. */
 	}
 
 	p.text,
-	p.text a {
+	p.text a,
+	p a,
+	li a {
 		color: inherit;
 		border-radius: 0.5em;
 		padding: 1em;
@@ -279,7 +295,9 @@ This theme is still a work-in-progress. */
 		font-size: 1em;
 	}
 
-	p.text a {
+	p.text a,
+	p a,
+	li a {
 		text-decoration: underline;
 		padding: 0;
 		margin: 0;
@@ -287,7 +305,9 @@ This theme is still a work-in-progress. */
 		border-radius: 3pt;
 	}
 
-	p.text a:hover {
+	p.text a:hover,
+	p a:hover,
+	li a:hover {
 		text-decoration: none;
 		background: white;
 		color: black;
@@ -342,6 +362,13 @@ This theme is still a work-in-progress. */
 				width: calc(100% - 2em);
 				padding: 0.5em 1em;
 				box-shadow: 0px 5px 5px #11111155;
+			}
+
+			nav h1 a {
+				font-size: .75em;
+				margin: .1em;
+				padding: .1em;
+
 			}
 
 			.box {

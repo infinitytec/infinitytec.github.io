@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+	<meta charset="utf-8">
 	<!--
 This is the PencilRevived theme, created by infinitytec.
 It is protected under the MIT License:
@@ -11,21 +12,11 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
 This theme is still a work-in-progress.
 -->
-	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>infinitytec</title>
 	<link rel="stylesheet" type="text/css" href="style/pencilrevived.css">
 	<link rel="shortcut icon" href="style/icon.ico" type="image/x-icon" />
-	<script>
-		function menu() {
-			document.getElementById("navmenu").classList.toggle("show");
-		}
-
-		function closealert() {
-			document.getElementById("alert").classList.add("hide");
-		}
-
-	</script>
+	<script src="style/pencilrevived.js"></script>
 </head>
 
 <body>
@@ -37,7 +28,7 @@ This theme is still a work-in-progress.
 			<a href="#projects">Projects</a>
 			<a href="#find">Find Me</a>
 			<a href="#pc">My PC</a>
-			<a href="#wishlist">My Wishlist</a>
+			<a href="#ref">Referral Links</a>
 		</div>
 	</nav>
 	<main>
@@ -51,25 +42,25 @@ This theme is still a work-in-progress.
 		<section id="projects" class="full img">
 			<h1>Here are some of my current projects:</h1>
 			<div class="box blue fancy">
-				<img src="style/3dark.png" alt="userscripts">
-				<h1>Scratch Userscripts</h1>
-				<p>Things to make Scratch look better</p>
+				<img src="assets/userscripts.png" alt="userscripts">
+				<h1>Userscripts</h1>
+				<p>Things to make the Web look better</p>
 				<a href="userscripts/userscripts.html" class="big">Check it out</a>
 			</div>
 			<div class="box blue fancy">
-				<img src="style/wallpapers.png" alt="wallpapers">
+				<img src="assets/wallpapers.png" alt="wallpapers">
 				<h1>Wallpapers</h1>
 				<p>Why not?</p>
 				<a href="wallpapers/wallpapers.html" class="big">Check it out</a>
 			</div>
 			<div class="box blue fancy">
-				<img src="style/blocklists.png" alt="blocklists">
+				<img src="assets/blocklists.png" alt="blocklists">
 				<h1>Blocklists</h1>
 				<p>Making the Internet better, one domain at a time</p>
 				<a href="https://github.com/infinitytec/blocklists" class="big">Check it out</a>
 			</div>
 			<div class="box blue fancy">
-				<img src="style/pencilrevived.png" alt="pencilrevived">
+				<img src="assets/pencilrevived.png" alt="pencilrevived">
 				<h1>Pencil Revived</h1>
 				<p>This website's style</p>
 				<a href="https://github.com/infinitytec/infinitytec.github.io" class="big">Check it out</a>
@@ -79,22 +70,22 @@ This theme is still a work-in-progress.
 			<h1>These are links to my profiles on several platforms:</h1>
 			<div class="box blue fancy">
 				<h1>Github</h1>
-				<img src="style/gh.png" alt="github-icon">
+				<img src="assets/gh.png" alt="github-icon">
 				<a href="https://github.com/infinitytec" class="big">Go</a>
 			</div>
 			<div class="box blue fancy">
 				<h1>Unsplash</h1>
-				<img src="style/unsplash.png" alt="unsplash-icon">
+				<img src="assets/unsplash.png" alt="unsplash-icon">
 				<a href="https://unsplash.com/@infinitytec" class="big">Go</a>
 			</div>
 			<div class="box blue fancy">
 				<h1>Scratch</h1>
-				<img src="style/scratch.png" alt="scratch-icon">
+				<img src="assets/scratch.png" alt="scratch-icon">
 				<a href="https://scratch.mit.edu/users/infinitytec/" class="big">Go</a>
 			</div>
 			<div class="box blue fancy">
 				<h1>Reddit</h1>
-				<img src="style/reddit.png" alt="reddit-icon">
+				<img src="assets/reddit.png" alt="reddit-icon">
 				<a href="https://www.reddit.com/user/infinitytec" class="big">Go</a>
 			</div><br>
 			<aside>All marks and logos are properties of their respective owners. I am not endorsed by them or have any affiliation other than using their platforms.</aside>
@@ -102,7 +93,7 @@ This theme is still a work-in-progress.
 		<section id="various" class="full blue">
 			<div class="box half white" id="pc">
 				<h1>My PC</h1>
-				<p> I custom-built my PC, because why not? Here are the specs:</p>
+				<p>I custom-built my PC, because why not? Here are the specs:</p>
 				<ul>
 					<li>Ryzen 7 2700</li>
 					<li>X470 motherboard</li>
@@ -113,13 +104,22 @@ This theme is still a work-in-progress.
 					<li>Windows 10 Pro</li>
 				</ul>
 			</div>
+			<div class="box half white" id="ref">
+				<h1>Referral links</h1>
+				<p>Random referral links I have! Using them actually helps me out a bit!</p>
+				<ul>
+					<li><a href="https://brave.com/inf454">Brave browser (btw I accept BAT)</a>
+						<p>I do still personally prefer Firefox, but feel free to try this out.</p>
+					</li>
+					<li><a href="https://privacy.com/join/UZLQM">Privacy payments (we both get $5)</a>
+						<p>Unique payment cards for all your online shopping sites!</p>
+					</li>
+				</ul>
+			</div>
 		</section>
 	</main>
 	<footer>
 		<p>Copyright &copy;2019, infinitytec. "infinitytec" and the door logo are trademarks of infinitytec. The theme to this site is Pencil Revived, &copy;2019 by infinitytec, under the MIT License.</p>
-		<a href="https://brave.com/inf454">
-			<p>Btw I accept BAT.</p>
-		</a>
 	</footer>
 </body>
 

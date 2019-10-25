@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+	<meta charset="utf-8">
 	<!--
 This is the PencilRevived theme, created by infinitytec.
 It is protected under the MIT License:
@@ -11,22 +12,11 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
 This theme is still a work-in-progress.
 -->
-	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>infinitytec's userscripts</title>
 	<link rel="stylesheet" type="text/css" href="../style/pencilrevived.css">
 	<link rel="shortcut icon" href="../style/icon.ico" type="image/x-icon" />
-	<script>
-		function menu() {
-			document.getElementById("navmenu").classList.toggle("show");
-		}
-
-		function closealert() {
-			document.getElementById("alert").classList.add("hide");
-		}
-
-	</script>
-</head>
+	<script src="../style/pencilrevived.js"></script>
 
 <body>
 	<nav>
@@ -38,40 +28,46 @@ This theme is still a work-in-progress.
 	</nav>
 	<main>
 		<section id="header" class="full blue">
-			<h1>Scratch Userscripts</h1>
-			<p>Here is a collection of Scratch userscripts I have made!</p>
+			<h1>Userscripts</h1>
+			<p>Here is a collection of userscripts I have made!</p>
 		</section>
-		<section id="userscripts" class="full img">
+		<section class="subnav full img">
+			<a href="#scratch">Scratch userscripts</a>
+			<a href="#other">other userscripts</a>
+		</section>
+		<section id="scratch" class="full grey">
+			<h1>Scratch userscripts</h1>
 			<div class="box blue fancy">
-				<img src="../style/3dark.png" alt="3dark">
+				<img src="assets/3dark.png" alt="3dark">
 				<h1>3.Dark</h1>
 				<p>Dark theme for Scratch 3.0</p>
 				<a href="https://github.com/infinitytec/3.Dark" class="big">Check it out</a>
 			</div>
 			<div class="box blue fancy">
-				<img src="../style/2colors.png" alt="2colors">
+				<img src="assets/2colors.png" alt="2colors">
 				<h1>2.0 Colors</h1>
 				<p>Make Scratch 3.0 have Scratch 2.0 block colors</p>
 				<a href="https://github.com/infinitytec/2.0-Colors" class="big">Check it out</a>
 			</div>
 			<div class="box blue fancy">
-				<img src="../style/2look.png" alt="not2">
+				<img src="assets/2look.png" alt="not2">
 				<h1>I Can't Believe It's Not 2</h1>
 				<p>Make Scratch 3.0 look like Scratch 2.0</p>
 				<a href="https://github.com/infinitytec/I-Cant-Believe-Its-Not-2" class="big">Check it out</a>
 			</div>
 		</section>
-		<section class="full grey">
-			<h1>More eventually...</h1>
-			<h1>Probably...</h1>
-			<h1>Maybe...</h1>
+		<section id="other" class="full grey">
+			<h1>other userscripts</h1>
+			<div class="box blue fancy">
+				<img src="assets/freefall.png" alt="freefall refreshed">
+				<h1>Freefall Refreshed</h1>
+				<p>A new appearance for the webcomic <a href="http://freefall.purrsia.com">freefall</a></p>
+				<a href="https://github.com/infinitytec/Freefall-Refreshed" class="big">Check it out</a>
+			</div>
 		</section>
 	</main>
 	<footer>
 		<p>Copyright &copy;2019, infinitytec. "infinitytec" and the door logo are trademarks of infinitytec. The theme to this site is Pencil Revived, &copy;2019 by infinitytec, under the MIT License.</p>
-		<a href="https://brave.com/inf454">
-			<p>Btw I accept BAT.</p>
-		</a>
 	</footer>
 </body>
 
