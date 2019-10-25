@@ -285,7 +285,8 @@ This theme is still a work-in-progress. */
 
 	p.text,
 	p.text a,
-	p a {
+	p a,
+	li a {
 		color: inherit;
 		border-radius: 0.5em;
 		padding: 1em;
@@ -295,7 +296,8 @@ This theme is still a work-in-progress. */
 	}
 
 	p.text a,
-	p a {
+	p a,
+	li a {
 		text-decoration: underline;
 		padding: 0;
 		margin: 0;
@@ -304,7 +306,8 @@ This theme is still a work-in-progress. */
 	}
 
 	p.text a:hover,
-	p a:hover {
+	p a:hover,
+	li a:hover {
 		text-decoration: none;
 		background: white;
 		color: black;
