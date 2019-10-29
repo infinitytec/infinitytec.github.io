@@ -62,7 +62,7 @@ This theme is still a work-in-progress. */
 		vertical-align: middle;
 	}
 
-	.fancy:hover:not(.fixed) {
+	.fancy:hover:not(.fixed), .fancy:target {
 		/*box-shadow: 0px 10px 10px #11111155;*/
 		border: 3px solid white;
 		padding: calc(1em - 3px) 2em;
@@ -153,6 +153,7 @@ This theme is still a work-in-progress. */
 
 	section h1 {
 		font-size: 20pt;
+		transition: all 0.2s ease-in-out;
 	}
 
 	section h2 {
@@ -170,7 +171,9 @@ This theme is still a work-in-progress. */
 		font-weight: normal;
 		text-decoration: none;
 	}
-
+	section:target h1 {
+		text-decoration: underline;
+	}
 	.box h1 {
 		margin: 0.25em 0 0.5em 0;
 	}
