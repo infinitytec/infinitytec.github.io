@@ -62,11 +62,10 @@ This theme is still a work-in-progress. */
 		vertical-align: middle;
 	}
 
-	.fancy:hover {
+	.fancy:hover:not(.fixed) {
 		/*box-shadow: 0px 10px 10px #11111155;*/
-		background: #2aa2ff;
 		border: 3px solid white;
-		padding: calc(1em - 3px) calc(2em - 3px);
+		padding: calc(1em - 3px) 2em;
 	}
 
 	.red {
@@ -108,6 +107,14 @@ This theme is still a work-in-progress. */
 		background-size: cover;
 	}
 
+	.darken {
+		background: #00000055;
+	}
+
+	.lighten {
+		background: #ffffff55;
+	}
+
 	.full {
 		width: calc(100% - 60pt);
 		padding: 10pt 30pt;
@@ -137,8 +144,31 @@ This theme is still a work-in-progress. */
 		width: calc(100% - 90pt);
 	}
 
+	section.subnav div.subnav {
+		width: 75%;
+		margin: auto;
+		border-radius: 5pt;
+		padding: 5pt 0;
+	}
+
 	section h1 {
 		font-size: 20pt;
+	}
+
+	section h2 {
+		font-size: 15pt;
+	}
+
+	section h3 {
+		font-size: 15pt;
+		font-weight: normal;
+		text-decoration: underline;
+	}
+
+	section h4 {
+		font-size: 15pt;
+		font-weight: normal;
+		text-decoration: none;
 	}
 
 	.box h1 {
@@ -286,7 +316,8 @@ This theme is still a work-in-progress. */
 	p.text,
 	p.text a,
 	p a,
-	li a {
+	li a,
+	.box a:not(.big) {
 		color: inherit;
 		border-radius: 0.5em;
 		padding: 1em;
@@ -297,7 +328,8 @@ This theme is still a work-in-progress. */
 
 	p.text a,
 	p a,
-	li a {
+	li a,
+	.box a:not(.big) {
 		text-decoration: underline;
 		padding: 0;
 		margin: 0;
@@ -307,7 +339,8 @@ This theme is still a work-in-progress. */
 
 	p.text a:hover,
 	p a:hover,
-	li a:hover {
+	li a:hover,
+	.box a:not(.big):hover {
 		text-decoration: none;
 		background: white;
 		color: black;
@@ -356,32 +389,43 @@ This theme is still a work-in-progress. */
 			width: calc(50% - 2em);
 		}
 
-		@media screen and (max-width: 50em) {
-			nav {
-				top: 0;
-				width: calc(100% - 2em);
-				padding: 0.5em 1em;
-				box-shadow: 0px 5px 5px #11111155;
-			}
-
-			nav h1 a {
-				font-size: .75em;
-				margin: .1em;
-				padding: .1em;
-
-			}
-
-			.box {
-				width: calc(100% - 0em);
-				margin: 1em 0em;
-			}
-
-			.box.half {
-				width: calc(100% - 2em);
-			}
-
-			section.full {
-				padding: 10pt;
-				width: calc(100% - 20pt);
-			}
+		.box ul,
+		.box ol {
+			width: 75%;
+			margin: auto;
+			text-align: left;
 		}
+	}
+
+	@media screen and (max-width: 50em) {
+		nav {
+			top: 0;
+			width: calc(100% - 2em);
+			padding: 0.5em 1em;
+			box-shadow: 0px 5px 5px #11111155;
+		}
+
+		nav button.hamburger img {
+			height: 1em;
+		}
+
+		nav h1 a {
+			font-size: .75em;
+			margin: .1em;
+			padding: .1em;
+		}
+
+		.box {
+			width: calc(100% - 0em);
+			margin: 1em 0em;
+		}
+
+		.box.half {
+			width: calc(100% - 2em);
+		}
+
+		section.full {
+			padding: 10pt;
+			width: calc(100% - 20pt);
+		}
+	}
