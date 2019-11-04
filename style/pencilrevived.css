@@ -17,7 +17,6 @@ This theme is still a work-in-progress. */
 		padding: 0;
 		font-family: 'Quicksand', sans-serif;
 		scroll-behavior: smooth;
-		text-rendering: geometricPrecision;
 	}
 
 	body {
@@ -184,6 +183,7 @@ This theme is still a work-in-progress. */
 
 	section p {
 		font-size: 10pt;
+		overflow: hidden;
 	}
 
 	header {
