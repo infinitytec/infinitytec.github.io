@@ -5,7 +5,7 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
 This theme is still a work-in-progress. */
-@import url('https://fonts.googleapis.com/css?family=Comfortaa|Quicksand&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Comfortaa:300,400,500,600,700|Quicksand:300,400,500,600,700&display=swap');
 /*The Quicksand and Comfortaa fonts are licensed under the Open Font License. Learn more: http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL_web*/
 
 @media screen {
@@ -151,6 +151,10 @@ This theme is still a work-in-progress. */
 		padding: 5pt 0;
 	}
 
+	h1 {
+		font-weight: 500;
+	}
+
 	section h1 {
 		font-size: 20pt;
 		transition: all 0.2s ease-in-out;
@@ -213,7 +217,7 @@ This theme is still a work-in-progress. */
 		color: white;
 		display: inline-block;
 		padding: 0.25em 1em;
-		font-weight: bold;
+		font-weight: 500;
 		font-size: 1.5em;
 		text-decoration: none;
 		transition: all 0.2s ease-in-out;
