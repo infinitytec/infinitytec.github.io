@@ -55,6 +55,10 @@ This theme is still a work-in-progress. */
 		border: 0px solid white;
 	}
 
+	.box.fifth {
+		width: calc(20% - 2em);
+	}
+
 	.fancy {
 		border: 3px solid transparent;
 		min-height: 26em;
@@ -391,6 +395,10 @@ This theme is still a work-in-progress. */
 			float: left;
 		}
 
+		.box.fifth {
+			width: calc(20% - 2em);
+		}
+
 		section#descriptions {
 			overflow: hidden;
 		}
@@ -401,12 +409,17 @@ This theme is still a work-in-progress. */
 			width: calc(50% - 2em);
 		}
 
+		.box.fifth {
+			width: calc(33% - 2em);
+		}
+
 		.box ul,
 		.box ol {
 			width: 75%;
 			margin: auto;
 			text-align: left;
 		}
+
 	}
 
 	@media screen and (max-width: 50em) {
@@ -414,7 +427,7 @@ This theme is still a work-in-progress. */
 			top: 0;
 			width: calc(100% - 2em);
 			padding: 0.5em 1em;
-			box-shadow: 0px 5px 5px #11111155;
+			border-bottom: 2px solid white;
 		}
 
 		nav button.hamburger img {
@@ -433,6 +446,10 @@ This theme is still a work-in-progress. */
 		}
 
 		.box.half {
+			width: calc(100% - 2em);
+		}
+
+		.box.fifth {
 			width: calc(100% - 2em);
 		}
 
