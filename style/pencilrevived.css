@@ -1,6 +1,6 @@
 /*This is the PencilRevived theme, created by infinitytec.
 It is protected under the MIT License:
-Copyright 2019 infinitytec
+Copyright 2020 infinitytec
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
@@ -8,497 +8,521 @@ This theme is still a work-in-progress. */
 
 
 @font-face {
-	font-family: Comfortaa;
-	src: url(Comfortaa/Comfortaa-Light.ttf) format("truetype");
-	font-weight: 300;
-	font-style: normal;
-}
-@font-face {
-	font-family: Comfortaa;
-	src: url(Comfortaa/Comfortaa-Regular.ttf) format("truetype");
-	font-weight: 400;
-	font-style: normal;
-}
-@font-face {
-	font-family: Comfortaa;
-	src: url(Comfortaa/Comfortaa-Medium.ttf) format("truetype");
-	font-weight: 500;
-	font-style: normal;
-}
-@font-face {
-	font-family: Comfortaa;
-	src: url(Comfortaa/Comfortaa-SemiBold.ttf) format("truetype");
-	font-weight: 600;
-	font-style: normal;
-}
-@font-face {
-	font-family: Comfortaa;
-	src: url(Comfortaa/Comfortaa-Bold.ttf) format("truetype");
-	font-weight: 700;
-	font-style: normal;
+    font-family: Comfortaa;
+    src: url(Comfortaa/Comfortaa-Light.ttf) format("truetype");
+    font-weight: 300;
+    font-style: normal;
 }
 
 @font-face {
-	font-family: Quicksand;
-	src: url(Quicksand/Quicksand-Regular.ttf) format("truetype");
+    font-family: Comfortaa;
+    src: url(Comfortaa/Comfortaa-Regular.ttf) format("truetype");
     font-weight: 400;
-	font-style: normal;
+    font-style: normal;
 }
+
 @font-face {
-	font-family: Quicksand;
-	src: url(Quicksand/Quicksand-Regular.ttf) format("truetype");
-    font-weight: 700;
-	font-style: normal;
+    font-family: Comfortaa;
+    src: url(Comfortaa/Comfortaa-Medium.ttf) format("truetype");
+    font-weight: 500;
+    font-style: normal;
 }
+
+@font-face {
+    font-family: Comfortaa;
+    src: url(Comfortaa/Comfortaa-SemiBold.ttf) format("truetype");
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Comfortaa;
+    src: url(Comfortaa/Comfortaa-Bold.ttf) format("truetype");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Quicksand;
+    src: url(Quicksand/Quicksand-Regular.ttf) format("truetype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Quicksand;
+    src: url(Quicksand/Quicksand-Regular.ttf) format("truetype");
+    font-weight: 700;
+    font-style: normal;
+}
+
 /*The Quicksand and Comfortaa fonts are licensed under the Open Font License. Learn more: http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL_web*/
 @media screen {
 
-	html,
-	body,
-	main {
-		margin: 0;
-		padding: 0;
-		font-family: 'Quicksand', sans-serif;
+    html,
+    body,
+    main {
+        margin: 0;
+        padding: 0;
+        font-family: 'Quicksand', sans-serif;
         font-weight: 400;
-		scroll-behavior: smooth;
-	}
-
-	body {
-		width: 100%;
-		overflow-x: hidden;
-	}
-
-	.box a.big {
-		font-size: 2em;
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		padding: 1em;
-		text-decoration: underline;
-		transition: all 0.2s ease-in-out;
-		width: calc(100% - 2em);
-		color: white;
-	}
-
-	.box a.big:hover {
-		letter-spacing: 2px;
-		background: white;
-		color: black;
-	}
-
-	.box {
-		padding: 1em 2em;
-		width: calc(25% - 2em);
-		margin: 1em;
-		display: inline-block;
-		box-sizing: border-box;
-		font-size: 10pt;
-		transition: all 0.2s ease-in-out;
-		border-radius: 0.5em;
-		position: relative;
-		border: 0px solid white;
-	}
-
-	.box.fifth {
-		width: calc(20% - 2em);
-	}
-
-	.fancy {
-		border: 3px solid transparent;
-		min-height: 26em;
-		vertical-align: middle;
-	}
-
-	.fancy:hover:not(.fixed),
-	.fancy:target {
-		/*box-shadow: 0px 10px 10px #11111155;*/
-		border: 3px solid white;
-		padding: calc(1em - 3px) 2em;
-	}
-
-	.red {
-		background: #ef3e30;
-		color: white;
-	}
-
-	.orange {
-		background: #e9893c;
-		color: white;
-	}
-
-	.blue {
-		background: #2aa2ff;
-		color: white;
-	}
-
-	.grey {
-		background: #4a4947;
-		color: white;
-	}
-
-	.green {
-		background: #34995d;
-		color: white;
-	}
-
-	.white {
-		background: white;
-		color: black;
-	}
-
-	.img {
-		color: white;
-		background: url(background.png);
-		background-attachment: fixed;
-		background-repeat: no-repeat;
-		background-position: center;
-		background-size: cover;
-	}
-
-	.darken {
-		background: #00000055;
-	}
-
-	.lighten {
-		background: #ffffff55;
-	}
-
-	.full {
-		width: calc(100% - 60pt);
-		padding: 10pt 30pt;
-		margin: 0;
-		font-size: 0;
-		text-align: center;
-	}
-
-	.box.full {
-		font-size: 10pt;
-		margin-bottom: 1em;
-	}
-
-	.box.half {
-		width: calc(50% - 2em);
-		vertical-align: top;
-	}
-
-
-	section {
-		height: auto;
-		min-height: 20em;
-	}
-
-	section.products {
-		padding: 45pt;
-		width: calc(100% - 90pt);
-	}
-
-	section.subnav div.subnav {
-		width: 75%;
-		margin: auto;
-		border-radius: 5pt;
-		padding: 5pt 0;
-	}
-
-	h1 {
-		font-weight: 500;
-	}
-
-	section h1 {
-		font-size: 20pt;
-		transition: all 0.2s ease-in-out;
-	}
-
-	section h2 {
-		font-size: 15pt;
-	}
-
-	section h3 {
-		font-size: 15pt;
-		font-weight: normal;
-		text-decoration: underline;
-	}
-
-	section h4 {
-		font-size: 15pt;
-		font-weight: normal;
-		text-decoration: none;
-	}
-
-	section:target h1 {
-		text-decoration: underline;
-	}
-
-	.box h1 {
-		margin: 0.25em 0 0.5em 0;
-	}
-
-	main img {
-		max-width: 100%;
-	}
-
-	section p {
-		font-size: 10pt;
-		overflow: hidden;
-	}
-
-	header {
-		z-index: 1;
-	}
-
-	nav {
-		position: sticky;
-		top: -5em;
-		background: #2aa2ff;
-		padding: 0.5em 5em;
-		width: calc(100% - 10em);
-		color: white;
-		z-index: 1;
-		transition: all 0.2s ease-in-out;
-		border-bottom: 2px solid #2aa2ff;
-	}
-
-	nav h1,
-	nav a,
-	nav button,
-	button.close,
-	.subnav a {
-		color: white;
-		display: inline-block;
-		padding: 0.25em 1em;
-		font-weight: 500;
-		font-size: 1.5em;
-		text-decoration: none;
-		transition: all 0.2s ease-in-out;
-		border-radius: 0.5em;
-		background: transparent;
-		margin: 0 0 0.1em 0;
-	}
-
-	nav a,
-	button.close {
-		border: 2px solid white;
-		font-family: 'Quicksand', sans-serif;
-	}
-
-	nav h1 a {
-		border: 2px solid transparent;
-	}
-
-	nav button.hamburger {
-		padding: .3em .2em .05em .2em !important;
-		margin: 0;
-		border: 2px solid transparent;
-		position: relative;
-		top: 5px;
-	}
-
-	nav button.hamburger img {
-		height: 1.5em;
-	}
-
-	.subnav a {
-		font-size: 15pt;
-		border: 2px solid #fff;
-		margin: 0.1em;
-	}
-
-	nav:hover {
-		top: 0;
-		/*box-shadow: 0px 1px 5px #11111144;*/
-		border-bottom: 2px solid white;
-	}
-
-	nav a:hover,
-	button.close:hover,
-	section a:hover {
-		background: white;
-		color: #2aa2ff;
-	}
-
-	button.close {
-		position: absolute;
-		right: 0.5em;
-		top: 0.5em;
-	}
-
-	nav button.hamburger:hover {
-		border: 2px solid white;
-	}
-
-	nav h1 a:hover {
-		border: 2px solid white;
-		background: transparent;
-		color: white;
-	}
-
-
-	#navmenu {
-		display: block;
-		transition: all 0.2s ease-in-out;
-		max-height: 0em;
-		position: sticky;
-		top: 0;
-		overflow: hidden;
-		background: #2aa2ff;
-		min-height: 0;
-	}
-
-	#navmenu.show {
-		padding: 1.5em 0 0 0;
-		max-height: 50vh;
-		overflow-y: auto;
-	}
-
-	#alert {
-		position: fixed;
-		bottom: 1em;
-		left: 10%;
-		padding: 1em;
-		background: #2aa2ff;
-		border-radius: 0.5em;
-		width: calc(80% - 2em);
-		color: white;
-		max-height: 50%;
-		border: 2px solid white;
-		overflow-y: auto;
-		transition: all 0.2s ease-in-out;
-		box-shadow: 0px 10px 10px #11111155;
-	}
-
-	#alert.hide {
-		padding: 0;
-		height: 0;
-		max-height: 0;
-		bottom: -50em;
-		display: none;
-	}
-
-	p.text,
-	p.text a,
-	p a,
-	li a,
-	.box a:not(.big) {
-		color: inherit;
-		border-radius: 0.5em;
-		padding: 1em;
-		width: calc(100% - 2em);
-		text-align: left;
-		font-size: 1em;
-	}
-
-	p.text a,
-	p a,
-	li a,
-	.box a:not(.big) {
-		text-decoration: underline;
-		padding: 0;
-		margin: 0;
-		transition: all 0.2s ease-in-out;
-		border-radius: 3pt;
-	}
-
-	p.text a:hover,
-	p a:hover,
-	li a:hover,
-	.box a:not(.big):hover {
-		text-decoration: none;
-		background: white;
-		color: black;
-	}
-
-	aside {
-		color: #aaaaaa;
-		font-size: 10pt;
-	}
-
-	.box ul,
-	.box ol {
-		width: 50%;
-		margin: auto;
-		text-align: left;
-	}
-
-	footer {
-		width: calc(100% - 8em);
-		padding: 1em 4em;
-		background: #2aa2ff;
-		font-family: 'Comfortaa', cursive;
-		color: white;
-	}
-
-	footer a {
-		font-family: 'Comfortaa', cursive;
-		color: white;
-	}
-
-	@media screen and (min-width: 100em) {
-		#descriptions .box {
-			width: calc(50% - 4em);
-			margin: 1em;
-			min-height: 16em;
-			float: left;
-		}
-
-		.box.fifth {
-			width: calc(20% - 2em);
-		}
-
-		section#descriptions {
-			overflow: hidden;
-		}
-	}
-
-	@media screen and (max-width: 90em) {
-		.box {
-			width: calc(50% - 2em);
-		}
-
-		.box.fifth {
-			width: calc(33% - 2em);
-		}
-
-		.box ul,
-		.box ol {
-			width: 75%;
-			margin: auto;
-			text-align: left;
-		}
-
-	}
-
-	@media screen and (max-width: 50em) {
-		nav {
-			top: 0;
-			width: calc(100% - 2em);
-			padding: 0.5em 1em;
-			border-bottom: 2px solid white;
-		}
-
-		nav button.hamburger img {
-			height: 1em;
-		}
-
-		nav h1 a {
-			font-size: .75em;
-			margin: .1em;
-			padding: .1em;
-		}
-
-		.box {
-			width: calc(100% - 0em);
-			margin: 1em 0em;
-		}
-
-		.box.half {
-			width: calc(100% - 2em);
-		}
-
-		.box.fifth {
-			width: calc(100% - 2em);
-		}
-
-		section.full {
-			padding: 10pt;
-			width: calc(100% - 20pt);
-		}
-	}
+        scroll-behavior: smooth;
+        scrollbar-color: #4a4947 #2aa2ff;
+        scrollbar-width: thin;
+    }
+
+    body::-webkit-scrollbar {
+        width: .5em;
+        background: #2aa2ff;
+    }
+
+    body::-webkit-scrollbar-thumb {
+        background: #4a4947;
+        border-radius: 5px;
+        transition: all 0.2s ease-in-out;
+        border: 1px solid #2aa2ff;
+    }
+
+    body::-webkit-scrollbar-thumb:hover {
+        background: #5d5c59;
+    }
+
+    body {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    .box a.big {
+        font-size: 2em;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        padding: 1em;
+        text-decoration: underline;
+        transition: all 0.2s ease-in-out;
+        width: calc(100% - 2em);
+        color: white;
+    }
+
+    .box a.big:hover {
+        letter-spacing: 2px;
+        background: white;
+        color: black;
+    }
+
+    .box {
+        padding: 1em 2em;
+        width: calc(25% - 2em);
+        margin: 1em;
+        display: inline-block;
+        box-sizing: border-box;
+        font-size: 10pt;
+        transition: all 0.2s ease-in-out;
+        border-radius: 0.5em;
+        position: relative;
+        border: 0px solid white;
+    }
+
+    .box.fifth {
+        width: calc(20% - 2em);
+    }
+
+    .fancy {
+        border: 3px solid transparent;
+        min-height: 26em;
+        vertical-align: middle;
+    }
+
+    .fancy:hover:not(.fixed),
+    .fancy:target {
+        /*box-shadow: 0px 10px 10px #11111155;*/
+        border: 3px solid white;
+        padding: calc(1em - 3px) 2em;
+    }
+
+    .red {
+        background: #ef3e30;
+        color: white;
+    }
+
+    .orange {
+        background: #e9893c;
+        color: white;
+    }
+
+    .blue {
+        background: #2aa2ff;
+        color: white;
+    }
+
+    .grey {
+        background: #4a4947;
+        color: white;
+    }
+
+    .green {
+        background: #34995d;
+        color: white;
+    }
+
+    .white {
+        background: white;
+        color: black;
+    }
+
+    .img {
+        color: white;
+        background: url(background.png);
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+
+    .darken {
+        background: #00000055;
+    }
+
+    .lighten {
+        background: #ffffff55;
+    }
+
+    .full {
+        width: calc(100% - 60pt);
+        padding: 10pt 30pt;
+        margin: 0;
+        font-size: 0;
+        text-align: center;
+    }
+
+    .box.full {
+        font-size: 10pt;
+        margin-bottom: 1em;
+    }
+
+    .box.half {
+        width: calc(50% - 2em);
+        vertical-align: top;
+    }
+
+
+    section {
+        height: auto;
+        min-height: 20em;
+    }
+
+    section.products {
+        padding: 45pt;
+        width: calc(100% - 90pt);
+    }
+
+    section.subnav div.subnav {
+        width: 75%;
+        margin: auto;
+        border-radius: 5pt;
+        padding: 5pt 0;
+    }
+
+    h1 {
+        font-weight: 500;
+    }
+
+    section h1 {
+        font-size: 20pt;
+        transition: all 0.2s ease-in-out;
+    }
+
+    section h2 {
+        font-size: 15pt;
+    }
+
+    section h3 {
+        font-size: 15pt;
+        font-weight: normal;
+        text-decoration: underline;
+    }
+
+    section h4 {
+        font-size: 15pt;
+        font-weight: normal;
+        text-decoration: none;
+    }
+
+    section:target h1 {
+        text-decoration: underline;
+    }
+
+    .box h1 {
+        margin: 0.25em 0 0.5em 0;
+    }
+
+    main img {
+        max-width: 100%;
+    }
+
+    section p {
+        font-size: 10pt;
+        overflow: hidden;
+    }
+
+    header {
+        z-index: 1;
+    }
+
+    nav {
+        position: sticky;
+        top: -5em;
+        background: #2aa2ff;
+        padding: 0.5em 5em;
+        width: calc(100% - 10em);
+        color: white;
+        z-index: 1;
+        transition: all 0.2s ease-in-out;
+        border-bottom: 2px solid #2aa2ff;
+    }
+
+    nav h1,
+    nav a,
+    nav button,
+    button.close,
+    .subnav a {
+        color: white;
+        display: inline-block;
+        padding: 0.25em 1em;
+        font-weight: 500;
+        font-size: 1.5em;
+        text-decoration: none;
+        transition: all 0.2s ease-in-out;
+        border-radius: 0.5em;
+        background: transparent;
+        margin: 0 0 0.1em 0;
+    }
+
+    nav a,
+    button.close {
+        border: 2px solid white;
+        font-family: 'Quicksand', sans-serif;
+    }
+
+    nav h1 a {
+        border: 2px solid transparent;
+    }
+
+    nav button.hamburger {
+        padding: .3em .2em .05em .2em !important;
+        margin: 0;
+        border: 2px solid transparent;
+        position: relative;
+        top: 5px;
+    }
+
+    nav button.hamburger img {
+        height: 1.5em;
+    }
+
+    .subnav a {
+        font-size: 15pt;
+        border: 2px solid #fff;
+        margin: 0.1em;
+    }
+
+    nav:hover {
+        top: 0;
+        /*box-shadow: 0px 1px 5px #11111144;*/
+        border-bottom: 2px solid white;
+    }
+
+    nav a:hover,
+    button.close:hover,
+    section a:hover {
+        background: white;
+        color: #2aa2ff;
+    }
+
+    button.close {
+        position: absolute;
+        right: 0.5em;
+        top: 0.5em;
+    }
+
+    nav button.hamburger:hover {
+        border: 2px solid white;
+    }
+
+    nav h1 a:hover {
+        border: 2px solid white;
+        background: transparent;
+        color: white;
+    }
+
+
+    #navmenu {
+        display: block;
+        transition: all 0.2s ease-in-out;
+        max-height: 0em;
+        position: sticky;
+        top: 0;
+        overflow: hidden;
+        background: #2aa2ff;
+        min-height: 0;
+    }
+
+    #navmenu.show {
+        padding: 1.5em 0 0 0;
+        max-height: 50vh;
+        overflow-y: auto;
+    }
+
+    #alert {
+        position: fixed;
+        bottom: 1em;
+        left: 10%;
+        padding: 1em;
+        background: #2aa2ff;
+        border-radius: 0.5em;
+        width: calc(80% - 2em);
+        color: white;
+        max-height: 50%;
+        border: 2px solid white;
+        overflow-y: auto;
+        transition: all 0.2s ease-in-out;
+        box-shadow: 0px 10px 10px #11111155;
+    }
+
+    #alert.hide {
+        padding: 0;
+        height: 0;
+        max-height: 0;
+        bottom: -50em;
+        display: none;
+    }
+
+    p.text,
+    p.text a,
+    p a,
+    li a,
+    .box a:not(.big) {
+        color: inherit;
+        border-radius: 0.5em;
+        padding: 1em;
+        width: calc(100% - 2em);
+        text-align: left;
+        font-size: 1em;
+    }
+
+    p.text a,
+    p a,
+    li a,
+    .box a:not(.big) {
+        text-decoration: underline;
+        padding: 0;
+        margin: 0;
+        transition: all 0.2s ease-in-out;
+        border-radius: 3pt;
+    }
+
+    p.text a:hover,
+    p a:hover,
+    li a:hover,
+    .box a:not(.big):hover {
+        text-decoration: none;
+        background: white;
+        color: black;
+    }
+
+    aside {
+        color: #aaaaaa;
+        font-size: 10pt;
+    }
+
+    .box ul,
+    .box ol {
+        width: 50%;
+        margin: auto;
+        text-align: left;
+    }
+
+    footer {
+        width: calc(100% - 8em);
+        padding: 1em 4em;
+        background: #2aa2ff;
+        font-family: 'Comfortaa', cursive;
+        color: white;
+    }
+
+    footer a {
+        font-family: 'Comfortaa', cursive;
+        color: white;
+    }
+
+    @media screen and (min-width: 100em) {
+        #descriptions .box {
+            width: calc(50% - 4em);
+            margin: 1em;
+            min-height: 16em;
+            float: left;
+        }
+
+        .box.fifth {
+            width: calc(20% - 2em);
+        }
+
+        section#descriptions {
+            overflow: hidden;
+        }
+    }
+
+    @media screen and (max-width: 90em) {
+        .box {
+            width: calc(50% - 2em);
+        }
+
+        .box.fifth {
+            width: calc(33% - 2em);
+        }
+
+        .box ul,
+        .box ol {
+            width: 75%;
+            margin: auto;
+            text-align: left;
+        }
+
+    }
+
+    @media screen and (max-width: 50em) {
+        nav {
+            top: 0;
+            width: calc(100% - 2em);
+            padding: 0.5em 1em;
+            border-bottom: 2px solid white;
+        }
+
+        nav button.hamburger img {
+            height: 1em;
+        }
+
+        nav h1 a {
+            font-size: .75em;
+            margin: .1em;
+            padding: .1em;
+        }
+
+        .box {
+            width: calc(100% - 0em);
+            margin: 1em 0em;
+        }
+
+        .box.half {
+            width: calc(100% - 2em);
+        }
+
+        .box.fifth {
+            width: calc(100% - 2em);
+        }
+
+        section.full {
+            padding: 10pt;
+            width: calc(100% - 20pt);
+        }
+    }
