@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<!--
+This is the PencilRevived theme, created by infinitytec.
+It is protected under the MIT License:
+Copyright 2019 infinitytec
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
+This theme is still a work-in-progress.
+-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>infinitytec's blocklists</title>
+	<link rel="stylesheet" type="text/css" href="../style/pencilrevived.css">
+	<link rel="shortcut icon" href="../style/icon.ico" type="image/x-icon" />
+	<script src="../style/pencilrevived.js"></script>
+</head>
+
+<body>
+	<nav>
+		<button class="hamburger" onclick="menu()"><img src="../style/hamburger.svg" alt="menu"></button>
+		<h1><a href="../index.html">infinitytec.github.io</a></h1>
+		<div id="navmenu">
+			<a href="../index.html">Back to Home</a>
+		</div>
+	</nav>
+	<main>
+		<section id="header" class="full grey">
+			<h1>Blocklists</h1>
+            <p>For more information and to submit an issue, check out the <a href="https://github.com/infinitytec/blocklists">Github Repository</a>.</p>
+		</section>
+		<section id="Hostsfiles" class="full grey">
+            <h1>Hosts Files</h1>
+            <p>Compatible with <a href="https://pi-hole.net/">Pi-hole</a>, <a href="https://github.com/gorhill/uBlock">uBlock Origin</a>, <a href="https://blokada.org/">Blokada</a>, and other adblockers.</p>
+			<div class="box blue fancy">
+				<img src="assets/ads.png" alt="adblock logo">
+				<h1>Ads and trackers</h1>
+				<p>Ad and tracking hosts I have seen around the Internet.</p>
+				<a href="https://github.com/infinitytec/blocklists/raw/master/ads-and-trackers.txt" class="big">Link to host file</a>
+			</div>
+            <div class="box blue fancy">
+				<img src="assets/malware.png" alt="bad sites logo">
+				<h1>Scams and phishing</h1>
+				<p>Malware, scam, phishing, and copycat sites. Frequently updated.</p>
+				<a href="https://github.com/infinitytec/blocklists/raw/master/scams-and-phishing.txt" class="big">Link to host file</a>
+			</div>
+            <div class="box blue fancy">
+				<img src="assets/med.png" alt="medical misinformation logo">
+				<h1>Medical Pseudoscience</h1>
+				<p>Antivax sites and other medical misinformation.</p>
+				<a href="https://github.com/infinitytec/blocklists/raw/master/medicalpseudoscience.txt" class="big">Link to host file</a>
+			</div>
+		</section>
+		<section id="uBO" class="full grey">
+			<h1>uBlock Origin and other adblockers</h1>
+            <p>Filters designed for <a href="https://github.com/gorhill/uBlock">uBlock Origin</a> and other adblockers.</p>
+			<div class="box blue fancy">
+				<img src="assets/ads2.png" alt="adblock logo">
+				<h1>Adfilters</h1>
+				<p>Ads and ad sections in websites. Frequently updated.</p>
+				<a href="https://raw.githubusercontent.com/infinitytec/blocklists/master/adfilters.txt" class="big">Link to filter list</a>
+			</div>
+            <div class="box blue fancy">
+				<img src="assets/annoy.png" alt="annoyances logo">
+				<h1>Annoyances</h1>
+				<p>Annoyances such as cookie banners.</p>
+				<a href="https://github.com/infinitytec/blocklists/raw/master/annoyances.txt" class="big">Link to filter list</a>
+			</div>
+		</section>
+	</main>
+	<footer>
+		<aside class="blue">All marks, names, and logos are properties of their respective owners. I am not endorsed by them or have any affiliation other than using their platforms.<br> 
+            I cannot guarantee that any sites are false positives. If a site should not be on a blocklist, please <a href="../contact/contact.html">contact me</a>. I cannot vouch for medical accuracy or inaccuracy of any medical-related sites. Contact a medical professional if you have questions.</aside>
+		<p>Copyright &copy;2020, infinitytec. "infinitytec" and the door logo are trademarks of infinitytec. The theme to this site is Pencil Revived, &copy;2020 by infinitytec, under the MIT License.</p>
+	</footer>
+</body>
+
+</html>

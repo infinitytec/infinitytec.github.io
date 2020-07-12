@@ -97,7 +97,7 @@ This theme is still a work-in-progress. */
         position: absolute;
         bottom: 0;
         left: 0;
-        padding: 1em;
+        padding: 0.75em 1em;
         text-decoration: underline;
         transition: all 0.2s ease-in-out;
         width: calc(100% - 2em);
@@ -135,9 +135,8 @@ This theme is still a work-in-progress. */
 
     .fancy:hover:not(.fixed),
     .fancy:target {
-        /*box-shadow: 0px 10px 10px #11111155;*/
+        box-shadow: 0px 10px 10px #11111120;
         border: 3px solid white;
-        padding: calc(1em - 3px) 2em;
     }
 
     .red {
