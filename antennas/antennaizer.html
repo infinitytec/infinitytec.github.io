@@ -154,6 +154,7 @@
         <div class="tab">
             <button class="tablinks" onclick="openTab(event, 'Design')" id="defaultOpen">Design</button>
             <button class="tablinks" onclick="openTab(event, 'Calculations')">Calculations</button>
+            <button class="tablinks" onclick="openTab(event, 'TrapDesign')">Trap Design</button>
         </div>
 
         <div id="Design" class="tabcontent">
@@ -163,6 +164,10 @@
 
         <div id="Calculations" class="tabcontent">
             <p id="calculationText">Calculations will appear here after clicking Calculate.</p>
+        </div>
+
+        <div id="TrapDesign" class="tabcontent">
+            <p id="trapDesignText">Trap designs will appear here if traps are used.</p>
         </div>
     </div>
 
@@ -186,9 +191,8 @@
 
         function toggleTrapOptions() {
             const useTraps = document.getElementById('useTraps').checked;
-            const antennaType = document.getElementById('antennaType').value;
-            document.getElementById('trapOptions').classList.toggle('hidden', !useTraps || !['fanDipole', 'hybrid'].includes(antennaType));
-            if (useTraps && ['fanDipole', 'hybrid'].includes(antennaType) && trapFreqCount === 0) {
+            document.getElementById('trapOptions').classList.toggle('hidden', !useTraps);
+            if (useTraps && trapFreqCount === 0) {
                 addTrapFrequency();
             }
         }
@@ -254,9 +258,7 @@
                 <label>
                     Trap Frequency ${trapFreqCount + 1} (MHz):
                     <input type="number" id="${freqId}" step="0.1" min="0.1" value="${14.2 - trapFreqCount * 7}">
-                    <button class="remove-btn"
-
- onclick="removeTrapFrequency(this)">Remove</button>
+                    <button class="remove-btn" onclick="removeTrapFrequency(this)">Remove</button>
                 </label>
             `;
             trapFrequencies.appendChild(div);
@@ -276,14 +278,14 @@
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             const centerX = canvas.width / 2;
-            const baseY = canvas.height - 50; // Move base down for better label space
+            const baseY = canvas.height - 50;
             const maxLength = Math.max(...lengths);
-            const scale = Math.min(15, (canvas.width - 80) / (maxLength * 2)); // Adjusted for tighter fit
+            const scale = Math.min(15, (canvas.width - 80) / (maxLength * 2));
             const cutGap = 8;
 
             ctx.strokeStyle = '#000';
             ctx.lineWidth = 1.5;
-            ctx.font = '9px Arial'; // Even smaller font
+            ctx.font = '9px Arial';
             ctx.textAlign = 'center';
 
             function drawFeedPoint(x, y) {
@@ -292,7 +294,7 @@
                 ctx.fillStyle = '#FF0000';
                 ctx.fill();
                 ctx.fillStyle = '#000';
-                ctx.fillText('F', x, y + 12); // Minimal label, below
+                ctx.fillText('F', x, y + 12);
             }
 
             function drawGroundPlane(x, y, length) {
@@ -302,36 +304,78 @@
                 ctx.lineTo(x + length * scale, y);
                 ctx.stroke();
                 ctx.strokeStyle = '#000';
-                ctx.fillText('G', x, y + 12); // Minimal label
+                ctx.fillText('G', x, y + 12);
             }
 
             function drawBalun(x, y, ratio) {
                 ctx.fillStyle = '#00F';
-                ctx.fillRect(x - 6, y - 3, 12, 6); // Smaller balun
+                ctx.fillRect(x - 6, y - 3, 12, 6);
                 ctx.fillStyle = '#000';
-                ctx.fillText(ratio, x, y - 10); // Ratio above, closer
+                ctx.fillText(ratio, x, y - 10);
             }
 
             function drawTrap(x, y, freq) {
                 ctx.fillStyle = '#0F0';
-                ctx.fillRect(x - 3, y - 3, 6, 6); // Smaller trap
+                ctx.fillRect(x - 3, y - 3, 6, 6);
                 ctx.fillStyle = '#000';
-                ctx.fillText(freq.toFixed(1), x, y + 12); // Below trap
+                ctx.fillText(freq.toFixed(1), x, y + 12);
             }
 
-            if (antennaType === 'dipole') {
-                const length = lengths[0] / 2;
+            if (antennaType === 'dipole' || antennaType === 'foldedDipole' || antennaType === 'endFed') {
+                const length = lengths[0];
                 const y = baseY / 2;
+                let halfLength = length / 2;
+                if (antennaType === 'endFed') halfLength = length;
+
                 ctx.beginPath();
-                ctx.moveTo(centerX - length * scale, y);
-                ctx.lineTo(centerX - cutGap / 2, y);
-                ctx.moveTo(centerX + cutGap / 2, y);
-                ctx.lineTo(centerX + length * scale, y);
+                if (antennaType === 'endFed') {
+                    ctx.moveTo(centerX - length * scale, y);
+                    ctx.lineTo(centerX, y);
+                } else {
+                    ctx.moveTo(centerX - halfLength * scale, y);
+                    ctx.lineTo(centerX - cutGap / 2, y);
+                    ctx.moveTo(centerX + cutGap / 2, y);
+                    ctx.lineTo(centerX + halfLength * scale, y);
+                }
                 ctx.stroke();
-                drawFeedPoint(centerX, y);
-                if (useBalun && balunRatio) drawBalun(centerX, y, balunRatio);
-                ctx.fillText(`${length.toFixed(2)}`, centerX - length * scale / 2, y - 10);
-                ctx.fillText(`${length.toFixed(2)}`, centerX + length * scale / 2, y - 10);
+
+                const feedX = antennaType === 'endFed' ? centerX - length * scale : centerX;
+                drawFeedPoint(feedX, y);
+                if (useBalun && balunRatio) drawBalun(feedX, y, balunRatio);
+
+                if (useTraps && trapFrequencies.length > 0) {
+                    const trapSpacing = halfLength / (trapFrequencies.length + 1);
+                    trapFrequencies.forEach((freq, index) => {
+                        const trapPos = trapSpacing * (index + 1);
+                        if (antennaType !== 'endFed') {
+                            drawTrap(centerX - trapPos * scale, y, freq);
+                            drawTrap(centerX + trapPos * scale, y, freq);
+                        } else {
+                            drawTrap(centerX - length * scale + trapPos * scale, y, freq);
+                        }
+                    });
+                }
+
+                if (antennaType === 'endFed') {
+                    ctx.fillText(`${length.toFixed(2)}`, centerX - length * scale / 2, y - 10);
+                } else {
+                    ctx.fillText(`${halfLength.toFixed(2)}`, centerX - halfLength * scale / 2, y - 10);
+                    ctx.fillText(`${halfLength.toFixed(2)}`, centerX + halfLength * scale / 2, y - 10);
+                }
+                if (antennaType === 'foldedDipole') {
+                    const height = 12;
+                    ctx.beginPath();
+                    ctx.moveTo(centerX - halfLength * scale, y - height);
+                    ctx.lineTo(centerX + halfLength * scale, y - height);
+                    ctx.lineTo(centerX + halfLength * scale, y + height);
+                    ctx.lineTo(centerX - halfLength * scale, y + height);
+                    ctx.lineTo(centerX - halfLength * scale, y - height);
+                    ctx.stroke();
+                    drawFeedPoint(centerX, y - height);
+                    if (useBalun && balunRatio) drawBalun(centerX, y - height, balunRatio);
+                    ctx.fillText(`${halfLength.toFixed(2)}`, centerX - halfLength * scale / 2, y - height - 10);
+                    ctx.fillText(`${halfLength.toFixed(2)}`, centerX + halfLength * scale / 2, y - height - 10);
+                }
             } else if (antennaType === 'quarterVertical') {
                 const length = lengths[0];
                 ctx.beginPath();
@@ -341,38 +385,17 @@
                 drawFeedPoint(centerX, baseY);
                 if (useBalun && balunRatio) drawBalun(centerX, baseY, balunRatio);
                 drawGroundPlane(centerX, baseY, length);
+                if (useTraps && trapFrequencies.length > 0) {
+                    const trapSpacing = length / (trapFrequencies.length + 1);
+                    trapFrequencies.forEach((freq, index) => {
+                        drawTrap(centerX, baseY - trapSpacing * (index + 1) * scale, freq);
+                    });
+                }
                 ctx.textAlign = 'left';
                 ctx.fillText(`${length.toFixed(2)}`, centerX + 5, baseY - length * scale / 2);
                 ctx.textAlign = 'center';
-            } else if (antennaType === 'foldedDipole') {
-                const length = lengths[0] / 2;
-                const height = 12;
-                const y = baseY / 2;
-                ctx.beginPath();
-                ctx.moveTo(centerX - length * scale, y - height);
-                ctx.lineTo(centerX - cutGap / 2, y - height);
-                ctx.moveTo(centerX + cutGap / 2, y - height);
-                ctx.lineTo(centerX + length * scale, y - height);
-                ctx.lineTo(centerX + length * scale, y + height);
-                ctx.lineTo(centerX - length * scale, y + height);
-                ctx.lineTo(centerX - length * scale, y - height);
-                ctx.stroke();
-                drawFeedPoint(centerX, y - height);
-                if (useBalun && balunRatio) drawBalun(centerX, y - height, balunRatio);
-                ctx.fillText(`${length.toFixed(2)}`, centerX - length * scale / 2, y - height - 10);
-                ctx.fillText(`${length.toFixed(2)}`, centerX + length * scale / 2, y - height - 10);
-            } else if (antennaType === 'endFed') {
-                const length = lengths[0];
-                const y = baseY / 2;
-                ctx.beginPath();
-                ctx.moveTo(centerX - length * scale, y);
-                ctx.lineTo(centerX, y);
-                ctx.stroke();
-                drawFeedPoint(centerX - length * scale, y);
-                if (useBalun && balunRatio) drawBalun(centerX - length * scale, y, balunRatio);
-                ctx.fillText(`${length.toFixed(2)}`, centerX - length * scale / 2, y - 10);
             } else if (antennaType === 'fanDipole' || antennaType === 'hybrid') {
-                const elementHeight = Math.min(40, (baseY - 50) / lengths.length); // Dynamic spacing
+                const elementHeight = Math.min(40, (baseY - 50) / lengths.length);
                 const totalHeight = (lengths.length - 1) * elementHeight;
                 const startY = (baseY - totalHeight) / 2;
                 let trapIndex = 0;
@@ -389,11 +412,14 @@
                         ctx.stroke();
                         if (index === 0) drawFeedPoint(centerX, yOffset);
                         if (useBalun && balunRatio && index === 0) drawBalun(centerX, yOffset, balunRatio);
-                        if (useTraps && trapIndex < trapFrequencies.length && index > 0) {
-                            const trapSpacing = halfLength / 2;
-                            drawTrap(centerX - trapSpacing * scale, yOffset, trapFrequencies[trapIndex]);
-                            drawTrap(centerX + trapSpacing * scale, yOffset, trapFrequencies[trapIndex]);
-                            trapIndex++;
+                        if (useTraps && trapIndex < trapFrequencies.length) {
+                            const trapSpacing = halfLength / (trapFrequencies.length - trapIndex + 1);
+                            for (let i = trapIndex; i < trapFrequencies.length; i++) {
+                                const pos = trapSpacing * (i - trapIndex + 1);
+                                drawTrap(centerX - pos * scale, yOffset, trapFrequencies[i]);
+                                drawTrap(centerX + pos * scale, yOffset, trapFrequencies[i]);
+                            }
+                            trapIndex = trapFrequencies.length;
                         }
                         ctx.fillText(`${halfLength.toFixed(2)}`, centerX - halfLength * scale / 2, yOffset - 10);
                         ctx.fillText(`${halfLength.toFixed(2)}`, centerX + halfLength * scale / 2, yOffset - 10);
@@ -408,6 +434,13 @@
                         if (index === 0) drawFeedPoint(centerX, yOffset);
                         if (useBalun && balunRatio && index === 0) drawBalun(centerX, yOffset, balunRatio);
                         drawGroundPlane(centerX, yOffset, length);
+                        if (useTraps && trapIndex < trapFrequencies.length) {
+                            const trapSpacing = length / (trapFrequencies.length - trapIndex + 1);
+                            for (let i = trapIndex; i < trapFrequencies.length; i++) {
+                                drawTrap(centerX, yOffset - trapSpacing * (i - trapIndex + 1) * scale, trapFrequencies[i]);
+                            }
+                            trapIndex = trapFrequencies.length;
+                        }
                         ctx.textAlign = 'left';
                         ctx.fillText(`${length.toFixed(2)} (${frequencies[index].toFixed(1)} MHz)`, 
                             centerX + 5, yOffset - length * scale / 2);
@@ -426,11 +459,14 @@
                         ctx.stroke();
                         if (index === 0) drawFeedPoint(centerX, yOffset - height);
                         if (useBalun && balunRatio && index === 0) drawBalun(centerX, yOffset - height, balunRatio);
-                        if (useTraps && trapIndex < trapFrequencies.length && index > 0) {
-                            const trapSpacing = halfLength / 2;
-                            drawTrap(centerX - trapSpacing * scale, yOffset, trapFrequencies[trapIndex]);
-                            drawTrap(centerX + trapSpacing * scale, yOffset, trapFrequencies[trapIndex]);
-                            trapIndex++;
+                        if (useTraps && trapIndex < trapFrequencies.length) {
+                            const trapSpacing = halfLength / (trapFrequencies.length - trapIndex + 1);
+                            for (let i = trapIndex; i < trapFrequencies.length; i++) {
+                                const pos = trapSpacing * (i - trapIndex + 1);
+                                drawTrap(centerX - pos * scale, yOffset, trapFrequencies[i]);
+                                drawTrap(centerX + pos * scale, yOffset, trapFrequencies[i]);
+                            }
+                            trapIndex = trapFrequencies.length;
                         }
                         ctx.fillText(`${halfLength.toFixed(2)}`, centerX - halfLength * scale / 2, yOffset - height - 10);
                         ctx.fillText(`${halfLength.toFixed(2)}`, centerX + halfLength * scale / 2, yOffset - height - 10);
@@ -449,7 +485,7 @@
             const wireMaterial = document.getElementById('wireMaterial').value;
             const wireGauge = parseInt(document.getElementById('wireGauge').value);
             const useBalun = document.getElementById('useBalun').checked;
-            const useTraps = document.getElementById('useTraps').checked && ['fanDipole', 'hybrid'].includes(antennaType);
+            const useTraps = document.getElementById('useTraps').checked;
 
             const materialVF = {
                 'copper': 0.95,
@@ -489,6 +525,7 @@
             const wavelength = speedOfLight / (frequency * 1000000);
             let results = [];
             let calcResults = [];
+            let trapResults = [];
             let lengths = [];
             let frequencies = [];
             let types = [];
@@ -511,37 +548,54 @@
                 if (!useBalun) return null;
                 switch (type) {
                     case 'endFed':
-                        return '49:1'; // ~2500-3000Ω to 50Ω
+                        return '49:1';
                     case 'foldedDipole':
-                        return '4:1'; // 300Ω to 75Ω
+                        return '4:1';
                     case 'dipole':
                     case 'quarterVertical':
                     case 'fanDipole':
                     case 'hybrid':
-                        return '1:1'; // ~50-75Ω balanced to 50Ω coax
+                        return '1:1';
                     default:
                         return null;
                 }
             }
 
+            function calculateTrap(freq) {
+                // Simple LC trap calculation assuming a reasonable Q and inductance
+                const f = freq * 1e6; // Hz
+                const L = 10e-6; // 10 µH (arbitrary starting inductance)
+                const C = 1 / (4 * Math.PI * Math.PI * f * f * L); // Farads
+                return { L: L * 1e6, C: C * 1e12 }; // µH and pF
+            }
+
             const balunRatio = determineBalunRatio(antennaType);
 
-            // Calculations Section
             calcResults.push(`<b>Fundamental Constants:</b>`);
             calcResults.push(`- Speed of Light (c): ${speedOfLight} m/s - The speed at which electromagnetic waves propagate in a vacuum.`);
-            calcResults.push(`- Velocity Factor (VF): ${velocityFactor} - Accounts for the slower propagation speed in the wire due to material properties (e.g., ${wireMaterial}).`);
+            calcResults.push(`- Velocity Factor (VF): ${velocityFactor} - Adjusts for slower propagation in the wire (${wireMaterial}).`);
 
             calcResults.push(`<b>Design Parameters:</b>`);
             calcResults.push(`- Antenna Type: ${antennaType}`);
-            calcResults.push(`- Wire Material: ${wireMaterial} - Impacts VF and durability.`);
-            calcResults.push(`- Wire Gauge: ${wireGauge} AWG - Affects current capacity and strength.`);
-
+            calcResults.push(`- Wire Material: ${wireMaterial}`);
+            calcResults.push(`- Wire Gauge: ${wireGauge} AWG`);
             if (balunRatio) {
-                calcResults.push(`- Balun/UnUn: ${balunRatio} - Chosen to match impedance:`);
-                if (antennaType === 'endFed') calcResults.push(`  - End-fed half-wave has ~2500-3000Ω impedance; 49:1 transforms to ~50Ω for coax.`);
-                if (antennaType === 'foldedDipole') calcResults.push(`  - Folded dipole has ~300Ω; 4:1 transforms to ~75Ω, close to 50Ω coax.`);
+                calcResults.push(`- Balun/UnUn: ${balunRatio} - Matches impedance:`);
+                if (antennaType === 'endFed') calcResults.push(`  - ~2500-3000Ω to 50Ω (49:1).`);
+                if (antennaType === 'foldedDipole') calcResults.push(`  - ~300Ω to 75Ω (4:1).`);
                 if (['dipole', 'quarterVertical', 'fanDipole', 'hybrid'].includes(antennaType)) 
-                    calcResults.push(`  - Impedance ~50-75Ω; 1:1 ensures balanced-to-unbalanced transition.`);
+                    calcResults.push(`  - ~50-75Ω balanced to 50Ω coax (1:1).`);
+            }
+
+            if (useTraps && trapFrequencies.length > 0) {
+                trapResults.push(`<b>Trap Designs:</b>`);
+                trapFrequencies.forEach((freq, index) => {
+                    const { L, C } = calculateTrap(freq);
+                    trapResults.push(`- Trap ${index + 1} at ${freq} MHz:`);
+                    trapResults.push(`  - Inductance (L): ${L.toFixed(2)} µH`);
+                    trapResults.push(`  - Capacitance (C): ${C.toFixed(2)} pF`);
+                    trapResults.push(`  - Reasoning: LC circuit resonates at ${freq} MHz, blocking higher frequencies. Adjust L and C for exact tuning and Q factor.`);
+                });
             }
 
             if (antennaType === 'dipole') {
@@ -552,15 +606,28 @@
                 results.push(`Half-Wave Dipole:`);
                 results.push(`- Total Length: ${formatLength(length)}`);
                 results.push(`- Each Leg: ${formatLength(length / 2)}`);
+                if (useTraps && trapFrequencies.length > 0) {
+                    trapFrequencies.forEach((freq, index) => {
+                        results.push(`- Trap at ${freq} MHz: At ~${formatLength(length / 2 / (trapFrequencies.length + 1) * (index + 1))} from feedpoint`);
+                    });
+                }
                 if (balunRatio) results.push(`- Balun (${balunRatio}): At center feedpoint`);
                 results.push(`- SWR at ${frequency} MHz: ${estimateSWR(length, frequency, 'dipole')}`);
+                trapFrequencies.forEach(freq => {
+                    results.push(`- SWR at ${freq} MHz: ${estimateSWR(length, freq, 'dipole')}`);
+                });
 
                 calcResults.push(`<b>Element 1: Half-Wave Dipole at ${frequency} MHz</b>`);
                 calcResults.push(`- Wavelength (λ) = c / f = ${speedOfLight} / (${frequency} × 10⁶) = ${(speedOfLight / (frequency * 1000000)).toFixed(2)} m`);
-                calcResults.push(`- Reasoning: A half-wave dipole is resonant when its total length is λ/2, adjusted by VF for the wire's propagation speed.`);
+                calcResults.push(`- Reasoning: λ/2 length ensures resonance at primary frequency.`);
                 calcResults.push(`- Total Length = λ × 0.5 × VF = ${(speedOfLight / (frequency * 1000000)).toFixed(2)} × 0.5 × ${velocityFactor} = ${length.toFixed(2)} m`);
-                calcResults.push(`- SWR = max(1, 1 + |actual - ideal| / ideal × 10) = max(1, 1 + |${length.toFixed(2)} - ${length.toFixed(2)}| / ${length.toFixed(2)} × 10) = ${estimateSWR(length, frequency, 'dipole')}`);
-                calcResults.push(`  - SWR is 1.0 at resonance; increases with frequency deviation.`);
+                calcResults.push(`- SWR at ${frequency} MHz = ${estimateSWR(length, frequency, 'dipole')}`);
+                if (useTraps) {
+                    calcResults.push(`- Traps divide the antenna into segments resonant at ${frequency} MHz and trap frequencies:`);
+                    trapFrequencies.forEach(freq => {
+                        calcResults.push(`  - ${freq} MHz: SWR = ${estimateSWR(length, freq, 'dipole')}`);
+                    });
+                }
             } else if (antennaType === 'quarterVertical') {
                 const length = wavelength * 0.25 * velocityFactor;
                 lengths.push(length);
@@ -569,15 +636,28 @@
                 results.push(`Quarter-Wave Vertical:`);
                 results.push(`- Radiator: ${formatLength(length)}`);
                 results.push(`- Radial Length: ${formatLength(length)} (suggested)`);
+                if (useTraps && trapFrequencies.length > 0) {
+                    trapFrequencies.forEach((freq, index) => {
+                        results.push(`- Trap at ${freq} MHz: At ~${formatLength(length / (trapFrequencies.length + 1) * (index + 1))} from base`);
+                    });
+                }
                 if (balunRatio) results.push(`- Balun (${balunRatio}): At base feedpoint`);
                 results.push(`- SWR at ${frequency} MHz: ${estimateSWR(length * 2, frequency, 'quarterVertical')}`);
+                trapFrequencies.forEach(freq => {
+                    results.push(`- SWR at ${freq} MHz: ${estimateSWR(length * 2, freq, 'quarterVertical')}`);
+                });
 
                 calcResults.push(`<b>Element 1: Quarter-Wave Vertical at ${frequency} MHz</b>`);
                 calcResults.push(`- Wavelength (λ) = c / f = ${speedOfLight} / (${frequency} × 10⁶) = ${(speedOfLight / (frequency * 1000000)).toFixed(2)} m`);
-                calcResults.push(`- Reasoning: A quarter-wave vertical is λ/4 tall, with a ground plane mimicking the other half for resonance.`);
+                calcResults.push(`- Reasoning: λ/4 with ground plane mimics a half-wave dipole.`);
                 calcResults.push(`- Radiator Length = λ × 0.25 × VF = ${(speedOfLight / (frequency * 1000000)).toFixed(2)} × 0.25 × ${velocityFactor} = ${length.toFixed(2)} m`);
-                calcResults.push(`- SWR (effective dipole length) = max(1, 1 + |${(length * 2).toFixed(2)} - ${(speedOfLight / (frequency * 1000000) * 0.5 * velocityFactor).toFixed(2)}| / ${(speedOfLight / (frequency * 1000000) * 0.5 * velocityFactor).toFixed(2)} × 10) = ${estimateSWR(length * 2, frequency, 'quarterVertical')}`);
-                calcResults.push(`  - SWR assumes ground plane completes the half-wave pattern.`);
+                calcResults.push(`- SWR at ${frequency} MHz = ${estimateSWR(length * 2, frequency, 'quarterVertical')}`);
+                if (useTraps) {
+                    calcResults.push(`- Traps create multi-band resonance:`);
+                    trapFrequencies.forEach(freq => {
+                        calcResults.push(`  - ${freq} MHz: SWR = ${estimateSWR(length * 2, freq, 'quarterVertical')}`);
+                    });
+                }
             } else if (antennaType === 'foldedDipole') {
                 const length = wavelength * 0.5 * velocityFactor;
                 const spacing = 0.02;
@@ -588,16 +668,29 @@
                 results.push(`- Total Wire Length: ${formatLength(length * 2)}`);
                 results.push(`- Each Side: ${formatLength(length)}`);
                 results.push(`- Spacing: ${formatLength(spacing)}`);
+                if (useTraps && trapFrequencies.length > 0) {
+                    trapFrequencies.forEach((freq, index) => {
+                        results.push(`- Trap at ${freq} MHz: At ~${formatLength(length / 2 / (trapFrequencies.length + 1) * (index + 1))} from feedpoint`);
+                    });
+                }
                 if (balunRatio) results.push(`- Balun (${balunRatio}): At top center feedpoint`);
-                results.push(`- SWR at ${frequency} MHz: ${estimateSWR(length, frequency, 'foldedDipole')} (impedance ~300Ω)`);
+                results.push(`- SWR at ${frequency} MHz: ${estimateSWR(length, frequency, 'foldedDipole')}`);
+                trapFrequencies.forEach(freq => {
+                    results.push(`- SWR at ${freq} MHz: ${estimateSWR(length, freq, 'foldedDipole')}`);
+                });
 
                 calcResults.push(`<b>Element 1: Folded Dipole at ${frequency} MHz</b>`);
                 calcResults.push(`- Wavelength (λ) = c / f = ${speedOfLight} / (${frequency} × 10⁶) = ${(speedOfLight / (frequency * 1000000)).toFixed(2)} m`);
-                calcResults.push(`- Reasoning: A folded dipole is a half-wave loop, doubling wire length for higher impedance (~300Ω).`);
+                calcResults.push(`- Reasoning: λ/2 folded design increases impedance to ~300Ω.`);
                 calcResults.push(`- Side Length = λ × 0.5 × VF = ${(speedOfLight / (frequency * 1000000)).toFixed(2)} × 0.5 × ${velocityFactor} = ${length.toFixed(2)} m`);
                 calcResults.push(`- Total Wire = 2 × ${length.toFixed(2)} = ${(length * 2).toFixed(2)} m`);
-                calcResults.push(`- SWR = max(1, 1 + |${length.toFixed(2)} - ${length.toFixed(2)}| / ${length.toFixed(2)} × 10) = ${estimateSWR(length, frequency, 'foldedDipole')}`);
-                calcResults.push(`  - SWR assumes proper balun matching to 50Ω coax.`);
+                calcResults.push(`- SWR at ${frequency} MHz = ${estimateSWR(length, frequency, 'foldedDipole')}`);
+                if (useTraps) {
+                    calcResults.push(`- Traps enable multi-band operation:`);
+                    trapFrequencies.forEach(freq => {
+                        calcResults.push(`  - ${freq} MHz: SWR = ${estimateSWR(length, freq, 'foldedDipole')}`);
+                    });
+                }
             } else if (antennaType === 'endFed') {
                 const length = wavelength * 0.5 * velocityFactor;
                 lengths.push(length);
@@ -605,18 +698,30 @@
                 types.push('endFed');
                 results.push(`End-Fed Wire:`);
                 results.push(`- Total Length: ${formatLength(length)}`);
+                if (useTraps && trapFrequencies.length > 0) {
+                    trapFrequencies.forEach((freq, index) => {
+                        results.push(`- Trap at ${freq} MHz: At ~${formatLength(length / (trapFrequencies.length + 1) * (index + 1))} from feedpoint`);
+                    });
+                }
                 if (balunRatio) results.push(`- UnUn (${balunRatio}): At end feedpoint`);
-                results.push(`- SWR at ${frequency} MHz: ${estimateSWR(length, frequency, 'endFed')} (impedance ~2500-3000Ω)`);
+                results.push(`- SWR at ${frequency} MHz: ${estimateSWR(length, frequency, 'endFed')}`);
+                trapFrequencies.forEach(freq => {
+                    results.push(`- SWR at ${freq} MHz: ${estimateSWR(length, freq, 'endFed')}`);
+                });
 
                 calcResults.push(`<b>Element 1: End-Fed Wire at ${frequency} MHz</b>`);
                 calcResults.push(`- Wavelength (λ) = c / f = ${speedOfLight} / (${frequency} × 10⁶) = ${(speedOfLight / (frequency * 1000000)).toFixed(2)} m`);
-                calcResults.push(`- Reasoning: A half-wave end-fed is resonant at λ/2, with high impedance at the end requiring a 49:1 UnUn.`);
+                calcResults.push(`- Reasoning: λ/2 length with high impedance (~2500-3000Ω) at end.`);
                 calcResults.push(`- Total Length = λ × 0.5 × VF = ${(speedOfLight / (frequency * 1000000)).toFixed(2)} × 0.5 × ${velocityFactor} = ${length.toFixed(2)} m`);
-                calcResults.push(`- SWR = max(1, 1 + |${length.toFixed(2)} - ${length.toFixed(2)}| / ${length.toFixed(2)} × 10) = ${estimateSWR(length, frequency, 'endFed')}`);
-                calcResults.push(`  - SWR assumes 49:1 UnUn matches ~2500Ω to 50Ω coax.`);
+                calcResults.push(`- SWR at ${frequency} MHz = ${estimateSWR(length, frequency, 'endFed')}`);
+                if (useTraps) {
+                    calcResults.push(`- Traps create multi-band segments:`);
+                    trapFrequencies.forEach(freq => {
+                        calcResults.push(`  - ${freq} MHz: SWR = ${estimateSWR(length, freq, 'endFed')}`);
+                    });
+                }
             } else if (antennaType === 'fanDipole') {
-                const fanFrequencies = [];
-                fanFrequencies.push(frequency);
+                const fanFrequencies = [frequency];
                 for (let i = 0; i < fanFreqCount; i++) {
                     const freq = parseFloat(document.getElementById(`fanFreq${i}`).value);
                     if (isNaN(freq) || freq <= 0) {
@@ -634,8 +739,8 @@
                     frequencies.push(freq);
                     types.push('dipole');
                     results.push(`- ${freq} MHz: ${formatLength(length)}`);
-                    if (useTraps && trapFrequencies.length > 0 && index > 0 && index <= trapFrequencies.length) {
-                        results.push(`  - Traps (${trapFrequencies[index - 1]} MHz): At ~1/4 length from feedpoint`);
+                    if (useTraps && trapFrequencies.length > 0 && index < trapFrequencies.length) {
+                        results.push(`  - Trap at ${trapFrequencies[index]} MHz: At ~${formatLength(length / 2 / (trapFrequencies.length - index + 1))} from feedpoint`);
                     }
                     fanFrequencies.forEach(testFreq => {
                         results.push(`  - SWR at ${testFreq} MHz: ${estimateSWR(length, testFreq, 'dipole')}`);
@@ -643,19 +748,16 @@
 
                     calcResults.push(`Element ${index + 1}: Dipole at ${freq} MHz`);
                     calcResults.push(`- Wavelength (λ) = c / f = ${speedOfLight} / (${freq} × 10⁶) = ${(speedOfLight / (freq * 1000000)).toFixed(2)} m`);
-                    calcResults.push(`- Reasoning: Each dipole is λ/2 for its frequency, sharing a common feedpoint.`);
                     calcResults.push(`- Total Length = λ × 0.5 × VF = ${(speedOfLight / (freq * 1000000)).toFixed(2)} × 0.5 × ${velocityFactor} = ${length.toFixed(2)} m`);
-                    calcResults.push(`- SWR at ${freq} MHz = max(1, 1 + |${length.toFixed(2)} - ${(speedOfLight / (freq * 1000000) * 0.5 * velocityFactor).toFixed(2)}| / ${(speedOfLight / (freq * 1000000) * 0.5 * velocityFactor).toFixed(2)} × 10) = ${estimateSWR(length, freq, 'dipole')}`);
-                    if (useTraps && index > 0 && index <= trapFrequencies.length) {
-                        calcResults.push(`  - Trap at ${trapFrequencies[index - 1]} MHz isolates this element from lower frequencies.`);
+                    calcResults.push(`- SWR at ${freq} MHz = ${estimateSWR(length, freq, 'dipole')}`);
+                    if (useTraps && index < trapFrequencies.length) {
+                        calcResults.push(`  - Trap at ${trapFrequencies[index]} MHz isolates higher frequencies.`);
                     }
                 });
                 if (balunRatio) results.push(`- Balun (${balunRatio}): At common center feedpoint`);
             } else if (antennaType === 'hybrid') {
-                const hybridFrequencies = [];
-                const hybridTypes = [];
-                hybridFrequencies.push(frequency);
-                hybridTypes.push(document.getElementById(`hybridElement0Type`).value);
+                const hybridFrequencies = [frequency];
+                const hybridTypes = [document.getElementById(`hybridElement0Type`).value];
                 for (let i = 1; i < hybridElementCount; i++) {
                     const freq = parseFloat(document.getElementById(`hybridElement${i}Freq`).value);
                     const type = document.getElementById(`hybridElement${i}Type`).value;
@@ -681,39 +783,36 @@
                     if (type === 'dipole') {
                         results.push(`- Dipole at ${freq} MHz: ${formatLength(length)}`);
                         results.push(`  - Each Leg: ${formatLength(length / 2)}`);
-                        if (useTraps && trapFrequencies.length > 0 && index > 0 && index <= trapFrequencies.length) {
-                            results.push(`  - Traps (${trapFrequencies[index - 1]} MHz): At ~1/4 length from feedpoint`);
+                        if (useTraps && trapFrequencies.length > 0 && index < trapFrequencies.length) {
+                            results.push(`  - Trap at ${trapFrequencies[index]} MHz: At ~${formatLength(length / 2 / (trapFrequencies.length - index + 1))} from feedpoint`);
                         }
                         calcResults.push(`Element ${index + 1}: Dipole at ${freq} MHz`);
-                        calcResults.push(`- Wavelength (λ) = c / f = ${speedOfLight} / (${freq} × 10⁶) = ${(speedOfLight / (freq * 1000000)).toFixed(2)} m`);
                         calcResults.push(`- Total Length = λ × 0.5 × VF = ${(speedOfLight / (freq * 1000000)).toFixed(2)} × 0.5 × ${velocityFactor} = ${length.toFixed(2)} m`);
-                        calcResults.push(`- SWR at ${freq} MHz = ${estimateSWR(length, freq, 'dipole')}`);
                     } else if (type === 'quarterVertical') {
                         results.push(`- Vertical at ${freq} MHz: ${formatLength(length)}`);
                         results.push(`  - Ground Plane: ${formatLength(length)}`);
+                        if (useTraps && trapFrequencies.length > 0 && index < trapFrequencies.length) {
+                            results.push(`  - Trap at ${trapFrequencies[index]} MHz: At ~${formatLength(length / (trapFrequencies.length - index + 1))} from base`);
+                        }
                         calcResults.push(`Element ${index + 1}: Quarter-Wave Vertical at ${freq} MHz`);
-                        calcResults.push(`- Wavelength (λ) = c / f = ${speedOfLight} / (${freq} × 10⁶) = ${(speedOfLight / (freq * 1000000)).toFixed(2)} m`);
                         calcResults.push(`- Radiator Length = λ × 0.25 × VF = ${(speedOfLight / (freq * 1000000)).toFixed(2)} × 0.25 × ${velocityFactor} = ${length.toFixed(2)} m`);
-                        calcResults.push(`- SWR at ${freq} MHz = ${estimateSWR(length * 2, freq, 'quarterVertical')}`);
                     } else if (type === 'foldedDipole') {
                         results.push(`- Folded Dipole at ${freq} MHz: ${formatLength(length * 2)}`);
                         results.push(`  - Each Side: ${formatLength(length)}`);
                         results.push(`  - Spacing: ${formatLength(spacing)}`);
-                        if (useTraps && trapFrequencies.length > 0 && index > 0 && index <= trapFrequencies.length) {
-                            results.push(`  - Traps (${trapFrequencies[index - 1]} MHz): At ~1/4 length from feedpoint`);
+                        if (useTraps && trapFrequencies.length > 0 && index < trapFrequencies.length) {
+                            results.push(`  - Trap at ${trapFrequencies[index]} MHz: At ~${formatLength(length / 2 / (trapFrequencies.length - index + 1))} from feedpoint`);
                         }
                         calcResults.push(`Element ${index + 1}: Folded Dipole at ${freq} MHz`);
-                        calcResults.push(`- Wavelength (λ) = c / f = ${speedOfLight} / (${freq} × 10⁶) = ${(speedOfLight / (freq * 1000000)).toFixed(2)} m`);
                         calcResults.push(`- Side Length = λ × 0.5 × VF = ${(speedOfLight / (freq * 1000000)).toFixed(2)} × 0.5 × ${velocityFactor} = ${length.toFixed(2)} m`);
                         calcResults.push(`- Total Wire = 2 × ${length.toFixed(2)} = ${(length * 2).toFixed(2)} m`);
-                        calcResults.push(`- SWR at ${freq} MHz = ${estimateSWR(length, freq, 'foldedDipole')}`);
                     }
                     hybridFrequencies.forEach(testFreq => {
                         results.push(`  - SWR at ${testFreq} MHz: ${estimateSWR(length, testFreq, type)}`);
                     });
-                    calcResults.push(`- Reasoning: ${type === 'quarterVertical' ? 'Quarter-wave with ground plane' : type === 'foldedDipole' ? 'Half-wave folded for higher impedance' : 'Half-wave dipole'} for resonance at ${freq} MHz.`);
-                    if (useTraps && index > 0 && index <= trapFrequencies.length) {
-                        calcResults.push(`  - Trap at ${trapFrequencies[index - 1]} MHz isolates this element.`);
+                    calcResults.push(`- SWR at ${freq} MHz = ${estimateSWR(length, freq, type)}`);
+                    if (useTraps && index < trapFrequencies.length) {
+                        calcResults.push(`  - Trap at ${trapFrequencies[index]} MHz isolates higher frequencies.`);
                     }
                 });
                 if (balunRatio) results.push(`- Balun (${balunRatio}): At common feedpoint`);
@@ -721,6 +820,7 @@
 
             document.getElementById('resultText').innerHTML = results.join('<br>');
             document.getElementById('calculationText').innerHTML = calcResults.join('<br>');
+            document.getElementById('trapDesignText').innerHTML = useTraps && trapFrequencies.length > 0 ? trapResults.join('<br>') : 'No traps used.';
             drawAntenna(antennaType, lengths, frequencies, types, velocityFactor, useBalun, balunRatio, useTraps, trapFrequencies);
 
             document.getElementById('defaultOpen').click();
