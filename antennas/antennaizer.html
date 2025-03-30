@@ -1,0 +1,474 @@
+<!-- This is an experemental antenna calculation tool written largely by Generative AI. Use at your own risk. As this is written by Generative AI, I am disavowing any copyright on it. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Wire Antenna Designer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin: 5px 0;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #results {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        .hidden {
+            display: none;
+        }
+        .remove-btn {
+            background-color: #f44336;
+            margin-left: 10px;
+            padding: 5px 10px;
+        }
+        .remove-btn:hover {
+            background-color: #da190b;
+        }
+        #antennaCanvas {
+            border: 1px solid #000;
+            margin-top: 20px;
+        }
+        .element-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Advanced Wire Antenna Designer</h1>
+    
+    <div class="section">
+        <h2>Input Parameters</h2>
+        <label>
+            Primary Frequency (MHz):
+            <input type="number" id="frequency" step="0.1" min="0.1" value="14.2">
+        </label>
+        <label>
+            Antenna Type:
+            <select id="antennaType" onchange="toggleAdvancedOptions()">
+                <option value="dipole">Half-Wave Dipole</option>
+                <option value="quarterVertical">Quarter-Wave Vertical</option>
+                <option value="foldedDipole">Folded Dipole</option>
+                <option value="fanDipole">Fan Dipole</option>
+                <option value="hybrid">Hybrid (Custom Elements)</option>
+            </select>
+        </label>
+        <label>
+            Velocity Factor (0-1, default 0.95 for bare wire):
+            <input type="number" id="velocityFactor" step="0.01" min="0" max="1" value="0.95">
+        </label>
+        <label>
+            Wire Material:
+            <select id="wireMaterial">
+                <option value="copper">Copper (VF: 0.95)</option>
+                <option value="aluminum">Aluminum (VF: 0.93)</option>
+                <option value="insulated">Insulated Copper (VF: 0.90)</option>
+            </select>
+        </label>
+        <label>
+            Wire Gauge (AWG):
+            <input type="number" id="wireGauge" min="6" max="30" value="14">
+        </label>
+
+        <!-- Advanced Options for Fan Dipole -->
+        <div id="fanDipoleOptions" class="hidden">
+            <h3>Fan Dipole Elements</h3>
+            <div id="fanFrequencies"></div>
+            <button onclick="addFanFrequency()">Add Frequency</button>
+        </div>
+
+        <!-- Advanced Options for Hybrid -->
+        <div id="hybridOptions" class="hidden">
+            <h3>Hybrid Elements</h3>
+            <div id="hybridElements"></div>
+            <button onclick="addHybridElement()">Add Element</button>
+        </div>
+
+        <button onclick="calculateAntenna()">Calculate</button>
+    </div>
+
+    <div id="results">
+        <h2>Results</h2>
+        <p id="resultText">Enter parameters and click Calculate to see results.</p>
+        <canvas id="antennaCanvas" width="600" height="400"></canvas>
+    </div>
+
+    <script>
+        let fanFreqCount = 0;
+        let hybridElementCount = 0;
+
+        function toggleAdvancedOptions() {
+            const antennaType = document.getElementById('antennaType').value;
+            document.getElementById('fanDipoleOptions').classList.toggle('hidden', antennaType !== 'fanDipole');
+            document.getElementById('hybridOptions').classList.toggle('hidden', antennaType !== 'hybrid');
+            if (antennaType === 'fanDipole' && fanFreqCount === 0) {
+                addFanFrequency();
+            }
+            if (antennaType === 'hybrid' && hybridElementCount === 0) {
+                addHybridElement();
+            }
+        }
+
+        function addFanFrequency() {
+            const fanFrequencies = document.getElementById('fanFrequencies');
+            const freqId = `fanFreq${fanFreqCount}`;
+            const div = document.createElement('div');
+            div.innerHTML = `
+                <label>
+                    Additional Frequency ${fanFreqCount + 1} (MHz):
+                    <input type="number" id="${freqId}" step="0.1" min="0.1" value="${7.1 + fanFreqCount * 7}">
+                    <button class="remove-btn" onclick="removeFanFrequency(this)">Remove</button>
+                </label>
+            `;
+            fanFrequencies.appendChild(div);
+            fanFreqCount++;
+        }
+
+        function removeFanFrequency(button) {
+            if (fanFreqCount > 1) {
+                button.parentElement.parentElement.remove();
+                fanFreqCount--;
+            }
+        }
+
+        function addHybridElement() {
+            const hybridElements = document.getElementById('hybridElements');
+            const elementId = `hybridElement${hybridElementCount}`;
+            const div = document.createElement('div');
+            div.className = 'element-container';
+            div.innerHTML = `
+                <label>
+                    Frequency ${hybridElementCount + 1} (MHz):
+                    <input type="number" id="${elementId}Freq" step="0.1" min="0.1" value="${14.2 - hybridElementCount * 7}">
+                </label>
+                <label>
+                    Type:
+                    <select id="${elementId}Type">
+                        <option value="dipole">Half-Wave Dipole</option>
+                        <option value="quarterVertical">Quarter-Wave Vertical</option>
+                        <option value="foldedDipole">Folded Dipole</option>
+                    </select>
+                </label>
+                <button class="remove-btn" onclick="removeHybridElement(this)">Remove</button>
+            `;
+            hybridElements.appendChild(div);
+            hybridElementCount++;
+        }
+
+        function removeHybridElement(button) {
+            if (hybridElementCount > 1) {
+                button.parentElement.remove();
+                hybridElementCount--;
+            }
+        }
+
+        function drawAntenna(antennaType, lengths, frequencies, types, velocityFactor) {
+            const canvas = document.getElementById('antennaCanvas');
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const maxLength = Math.max(...lengths);
+            const scale = Math.min(20, (canvas.width - 150) / (maxLength * 2));
+            const cutGap = 10;
+
+            ctx.strokeStyle = '#000';
+            ctx.lineWidth = 2;
+            ctx.font = '12px Arial';
+            ctx.textAlign = 'center';
+
+            function drawFeedPoint(x, y) {
+                ctx.beginPath();
+                ctx.arc(x, y, 5, 0, 2 * Math.PI);
+                ctx.fillStyle = '#FF0000';
+                ctx.fill();
+                ctx.fillStyle = '#000';
+                ctx.fillText('Feed Point', x, y - 15);
+            }
+
+            function drawGroundPlane(x, y, length) {
+                ctx.strokeStyle = '#666'; // Gray for ground plane
+                ctx.beginPath();
+                ctx.moveTo(x - length * scale, y);
+                ctx.lineTo(x + length * scale, y);
+                ctx.stroke();
+                ctx.strokeStyle = '#000'; // Reset to black
+                ctx.fillText(`Ground Plane: ${length.toFixed(2)} m`, x, y + 20);
+            }
+
+            if (antennaType === 'dipole') {
+                const length = lengths[0] / 2;
+                ctx.beginPath();
+                ctx.moveTo(centerX - length * scale, centerY);
+                ctx.lineTo(centerX - cutGap / 2, centerY);
+                ctx.moveTo(centerX + cutGap / 2, centerY);
+                ctx.lineTo(centerX + length * scale, centerY);
+                ctx.stroke();
+                drawFeedPoint(centerX, centerY);
+                ctx.fillText(`${length.toFixed(2)} m`, centerX - length * scale / 2, centerY + 25);
+                ctx.fillText(`${length.toFixed(2)} m`, centerX + length * scale / 2, centerY + 25);
+            } else if (antennaType === 'quarterVertical') {
+                const length = lengths[0];
+                ctx.beginPath();
+                ctx.moveTo(centerX, centerY);
+                ctx.lineTo(centerX, centerY - length * scale);
+                ctx.stroke();
+                drawFeedPoint(centerX, centerY);
+                drawGroundPlane(centerX, centerY, length);
+                ctx.textAlign = 'left';
+                ctx.fillText(`${length.toFixed(2)} m`, centerX + 60, centerY - length * scale / 2);
+                ctx.textAlign = 'center';
+            } else if (antennaType === 'foldedDipole') {
+                const length = lengths[0] / 2;
+                const height = 20; // Height between parallel wires (arbitrary visualization scale)
+                const spacing = 0.02; // Typical spacing in meters (e.g., 2 cm), can be adjusted
+                const totalWireLength = lengths[0] * 2;
+                ctx.beginPath();
+                ctx.moveTo(centerX - length * scale, centerY - height);
+                ctx.lineTo(centerX - cutGap / 2, centerY - height);
+                ctx.moveTo(centerX + cutGap / 2, centerY - height);
+                ctx.lineTo(centerX + length * scale, centerY - height);
+                ctx.lineTo(centerX + length * scale, centerY + height);
+                ctx.lineTo(centerX - length * scale, centerY + height);
+                ctx.lineTo(centerX - length * scale, centerY - height);
+                ctx.stroke();
+                drawFeedPoint(centerX, centerY - height);
+                // Side lengths
+                ctx.fillText(`${length.toFixed(2)} m`, centerX - length * scale / 2, centerY - height - 20);
+                ctx.fillText(`${length.toFixed(2)} m`, centerX + length * scale / 2, centerY - height - 20);
+                // Spacing between parallel wires
+                ctx.fillText(`Spacing: ${spacing.toFixed(2)} m`, centerX, centerY + height + 25);
+                ctx.fillText(`Total Wire: ${totalWireLength.toFixed(2)} m`, centerX, centerY + height + 40);
+            } else if (antennaType === 'fanDipole' || antennaType === 'hybrid') {
+                const totalHeight = (lengths.length - 1) * 40; // Increased spacing to avoid overlap
+                lengths.forEach((length, index) => {
+                    const yOffset = centerY - totalHeight / 2 + index * 40;
+                    const elementType = types[index];
+                    if (elementType === 'dipole') {
+                        const halfLength = length / 2;
+                        ctx.beginPath();
+                        ctx.moveTo(centerX - halfLength * scale, yOffset);
+                        ctx.lineTo(centerX - cutGap / 2, yOffset);
+                        ctx.moveTo(centerX + cutGap / 2, yOffset);
+                        ctx.lineTo(centerX + halfLength * scale, yOffset);
+                        ctx.stroke();
+                        drawFeedPoint(centerX, yOffset);
+                        ctx.fillText(`${halfLength.toFixed(2)} m`, centerX - halfLength * scale / 2, yOffset + 25);
+                        ctx.fillText(`${halfLength.toFixed(2)} m`, centerX + halfLength * scale / 2, yOffset + 25);
+                        ctx.textAlign = 'left';
+                        ctx.fillText(`${length.toFixed(2)} m (${frequencies[index].toFixed(1)} MHz)`, 
+                            centerX + halfLength * scale + 10, yOffset + 5); // Adjusted position
+                        ctx.textAlign = 'center';
+                    } else if (elementType === 'quarterVertical') {
+                        ctx.beginPath();
+                        ctx.moveTo(centerX, yOffset);
+                        ctx.lineTo(centerX, yOffset - length * scale);
+                        ctx.stroke();
+                        drawFeedPoint(centerX, yOffset);
+                        drawGroundPlane(centerX, yOffset, length);
+                        ctx.textAlign = 'left';
+                        ctx.fillText(`${length.toFixed(2)} m (${frequencies[index].toFixed(1)} MHz)`, 
+                            centerX + 60, yOffset - length * scale / 2 + 10); // Adjusted position
+                        ctx.textAlign = 'center';
+                    } else if (elementType === 'foldedDipole') {
+                        const halfLength = length / 2;
+                        const height = 20;
+                        const spacing = 0.02; // Typical spacing in meters (e.g., 2 cm)
+                        const totalWireLength = length * 2;
+                        ctx.beginPath();
+                        ctx.moveTo(centerX - halfLength * scale, yOffset - height);
+                        ctx.lineTo(centerX - cutGap / 2, yOffset - height);
+                        ctx.moveTo(centerX + cutGap / 2, yOffset - height);
+                        ctx.lineTo(centerX + halfLength * scale, yOffset - height);
+                        ctx.lineTo(centerX + halfLength * scale, yOffset + height);
+                        ctx.lineTo(centerX - halfLength * scale, yOffset + height);
+                        ctx.lineTo(centerX - halfLength * scale, yOffset - height);
+                        ctx.stroke();
+                        drawFeedPoint(centerX, yOffset - height);
+                        ctx.fillText(`${halfLength.toFixed(2)} m`, centerX - halfLength * scale / 2, yOffset - height - 20);
+                        ctx.fillText(`${halfLength.toFixed(2)} m`, centerX + halfLength * scale / 2, yOffset - height - 20);
+                        ctx.textAlign = 'left';
+                        ctx.fillText(`${totalWireLength.toFixed(2)} m (${frequencies[index].toFixed(1)} MHz)`, 
+                            centerX + halfLength * scale + 10, yOffset + 5); // Adjusted position
+                        ctx.fillText(`Spacing: ${spacing.toFixed(2)} m`, centerX + halfLength * scale + 10, yOffset + 20);
+                        ctx.textAlign = 'center';
+                    }
+                });
+            }
+        }
+
+        function calculateAntenna() {
+            const frequency = parseFloat(document.getElementById('frequency').value);
+            const antennaType = document.getElementById('antennaType').value;
+            let velocityFactor = parseFloat(document.getElementById('velocityFactor').value);
+            const wireMaterial = document.getElementById('wireMaterial').value;
+            const wireGauge = parseInt(document.getElementById('wireGauge').value);
+
+            const materialVF = {
+                'copper': 0.95,
+                'aluminum': 0.93,
+                'insulated': 0.90
+            };
+            if (velocityFactor === 0.95 && wireMaterial !== 'copper') {
+                velocityFactor = materialVF[wireMaterial];
+            }
+
+            if (isNaN(frequency) || frequency <= 0) {
+                alert('Please enter a valid primary frequency');
+                return;
+            }
+            if (isNaN(velocityFactor) || velocityFactor <= 0 || velocityFactor > 1) {
+                alert('Please enter a valid velocity factor between 0 and 1');
+                return;
+            }
+            if (wireGauge < 6 || wireGauge > 30) {
+                alert('Wire gauge should be between 6 and 30 AWG');
+                return;
+            }
+
+            const speedOfLight = 299792458; // meters per second
+            const wavelength = speedOfLight / (frequency * 1000000);
+            let results = [];
+            let lengths = [];
+            let frequencies = [];
+            let types = [];
+
+            function formatLength(length) {
+                const feet = length * 3.28084;
+                const inches = feet * 12;
+                return `${length.toFixed(2)} m (${feet.toFixed(2)} ft, ${inches.toFixed(2)} in)`;
+            }
+
+            function estimateSWR(length, freq, type) {
+                const idealLength = type === 'quarterVertical' ? 
+                    (speedOfLight / (freq * 1000000)) * 0.25 * velocityFactor :
+                    (speedOfLight / (freq * 1000000)) * 0.5 * velocityFactor;
+                const deviation = Math.abs(length - idealLength) / idealLength;
+                return Math.max(1, 1 + deviation * 10).toFixed(1);
+            }
+
+            if (antennaType === 'dipole') {
+                const length = wavelength * 0.5 * velocityFactor;
+                lengths.push(length);
+                frequencies.push(frequency);
+                types.push('dipole');
+                results.push(`Half-Wave Dipole: Total length = ${formatLength(length)}`);
+                results.push(`Each leg: ${formatLength(length / 2)}`);
+                results.push(`Estimated SWR at ${frequency} MHz: ${estimateSWR(length, frequency, 'dipole')}`);
+            } else if (antennaType === 'quarterVertical') {
+                const length = wavelength * 0.25 * velocityFactor;
+                lengths.push(length);
+                frequencies.push(frequency);
+                types.push('quarterVertical');
+                results.push(`Quarter-Wave Vertical: Radiator = ${formatLength(length)}`);
+                results.push(`Radial length (suggested): ${formatLength(length)}`);
+                results.push(`Estimated SWR at ${frequency} MHz: ${estimateSWR(length * 2, frequency, 'quarterVertical')}`);
+            } else if (antennaType === 'foldedDipole') {
+                const length = wavelength * 0.5 * velocityFactor;
+                const spacing = 0.02; // Typical spacing in meters (e.g., 2 cm)
+                lengths.push(length);
+                frequencies.push(frequency);
+                types.push('foldedDipole');
+                results.push(`Folded Dipole: Total wire length = ${formatLength(length * 2)}`);
+                results.push(`Each side length: ${formatLength(length)}`);
+                results.push(`Spacing between parallel wires: ${formatLength(spacing)}`);
+                results.push(`Estimated SWR at ${frequency} MHz: ${estimateSWR(length, frequency, 'foldedDipole')} (typically 300Ω impedance)`);
+            } else if (antennaType === 'fanDipole') {
+                const fanFrequencies = [];
+                fanFrequencies.push(frequency);
+                for (let i = 0; i < fanFreqCount; i++) {
+                    const freq = parseFloat(document.getElementById(`fanFreq${i}`).value);
+                    if (isNaN(freq) || freq <= 0) {
+                        alert(`Please enter a valid frequency for element ${i + 1}`);
+                        return;
+                    }
+                    fanFrequencies.push(freq);
+                }
+
+                results.push(`Fan Dipole:`);
+                fanFrequencies.forEach((freq, index) => {
+                    const length = (speedOfLight / (freq * 1000000)) * 0.5 * velocityFactor;
+                    lengths.push(length);
+                    frequencies.push(freq);
+                    types.push('dipole');
+                    results.push(`- ${freq} MHz: ${formatLength(length)}`);
+                    fanFrequencies.forEach(testFreq => {
+                        results.push(`  SWR at ${testFreq} MHz: ${estimateSWR(length, testFreq, 'dipole')}`);
+                    });
+                });
+            } else if (antennaType === 'hybrid') {
+                const hybridFrequencies = [];
+                const hybridTypes = [];
+                hybridFrequencies.push(frequency);
+                hybridTypes.push(document.getElementById(`hybridElement0Type`).value);
+                for (let i = 1; i < hybridElementCount; i++) {
+                    const freq = parseFloat(document.getElementById(`hybridElement${i}Freq`).value);
+                    const type = document.getElementById(`hybridElement${i}Type`).value;
+                    if (isNaN(freq) || freq <= 0) {
+                        alert(`Please enter a valid frequency for element ${i + 1}`);
+                        return;
+                    }
+                    hybridFrequencies.push(freq);
+                    hybridTypes.push(type);
+                }
+
+                results.push(`Hybrid Antenna:`);
+                hybridFrequencies.forEach((freq, index) => {
+                    const type = hybridTypes[index];
+                    const length = type === 'quarterVertical' ? 
+                        (speedOfLight / (freq * 1000000)) * 0.25 * velocityFactor :
+                        (speedOfLight / (freq * 1000000)) * 0.5 * velocityFactor;
+                    const spacing = type === 'foldedDipole' ? 0.02 : 0; // Spacing only for folded dipole
+                    lengths.push(length);
+                    frequencies.push(freq);
+                    types.push(type);
+                    if (type === 'dipole') {
+                        results.push(`- Dipole at ${freq} MHz: Total length = ${formatLength(length)}`);
+                        results.push(`  Each leg: ${formatLength(length / 2)}`);
+                    } else if (type === 'quarterVertical') {
+                        results.push(`- Vertical at ${freq} MHz: Radiator = ${formatLength(length)}`);
+                        results.push(`  Ground Plane Length: ${formatLength(length)}`);
+                    } else if (type === 'foldedDipole') {
+                        results.push(`- Folded Dipole at ${freq} MHz: Total wire length = ${formatLength(length * 2)}`);
+                        results.push(`  Each side length: ${formatLength(length)}`);
+                        results.push(`  Spacing between parallel wires: ${formatLength(spacing)}`);
+                    }
+                    hybridFrequencies.forEach(testFreq => {
+                        results.push(`  SWR at ${testFreq} MHz: ${estimateSWR(length, testFreq, type)}`);
+                    });
+                });
+            }
+
+            results.push(`Wire Material: ${wireMaterial}`);
+            results.push(`Wire Gauge: ${wireGauge} AWG`);
+            results.push(`Velocity Factor Used: ${velocityFactor}`);
+
+            document.getElementById('resultText').innerHTML = results.join('<br>');
+            drawAntenna(antennaType, lengths, frequencies, types, velocityFactor);
+        }
+    </script>
+</body>
+</html>
